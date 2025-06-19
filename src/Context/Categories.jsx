@@ -17,7 +17,7 @@ export const CategoriesProvider = ({ children }) => {
       {
         id: crypto.randomUUID(),
         title,
-        icon: emoji,
+        // icon: emoji,
       },
     ]);
   }

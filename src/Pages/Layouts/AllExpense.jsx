@@ -1,14 +1,16 @@
-import React from "react";
 import ExpenseCard from "../../Components/ExpenseCard";
+import { useTransactionsHook } from "../../Context/FinancesContext";
 
 const AllExpense = () => {
+  const { transactions } = useTransactionsHook();
   return (
-    <div className="flex flex-col max-h-[70%] w-full border gap-3 rounded-xl p-6 overflow-y-scroll">
+    <div className="flex flex-col h-[80%] w-full border gap-3 rounded-xl p-3 overflow-y-scroll">
       <h1 className="text-xl">Your Expenses</h1>
-      <ExpenseCard title="Food & Drinks" amount={18500} isExpense={true} />
-      <ExpenseCard title="Bill Suscription" amount={18500} isExpense={false} />
-      <ExpenseCard title="Bill Suscription" amount={18500} isExpense={false} />
-      <ExpenseCard title="Bill Suscription" amount={18500} isExpense={false} />
+      <span className="flex flex-col gap-2">
+        {transactions.map((transaction) => (
+          <ExpenseCard transaction={transaction} />
+        ))}
+      </span>
     </div>
   );
 };

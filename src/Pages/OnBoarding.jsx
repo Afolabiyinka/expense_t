@@ -1,24 +1,23 @@
-import { useState } from "react";
 import welcomeSvg from "../assets/undraw_welcome-aboard_y4e9.svg";
+import { useEffect } from "react";
 import { Button, Input } from "@mui/material";
 import { motion } from "framer-motion";
+import { useUser } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const OnBoarding = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  function handleSubmit(e) {
-    e.preventDefault();
-    localStorage.setItem("user", username);
-
-    setTimeout(() => {
+  const { user, setUser, handleUser } = useUser();
+  useEffect(() => {
+    const storedUser = localStorage.getItem("storedUser");
+    if (storedUser) {
       navigate("/app/finances");
-    }, 3000);
-  }
+    }
+  }, []);
   return (
-    <motion.div className="h-[100vh] w-full flex flex-col lg:flex-row gap-6 lg:gap-0 px-3 lg:px-10 py-12 ">
+    <motion.div className="h-[100vh] w-full flex flex-col lg:flex-row gap-6 lg:gap-0 px-3 lg:px-10  ">
       <motion.div
-        className="w-full h-full lg:w-1/2 flex flex-col  gap-4 lg:gap-6 justify-center items-center text-center"
+        className="w-full h-full lg:w-1/2 flex flex-col mt-6 gap-4 lg:gap-6 justify-center items-center text-center"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -30,22 +29,22 @@ const OnBoarding = () => {
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          No sign-up needed -your data is stored safely on your device🔐
+          No sign-up needed your data is stored safely on your device🔐
         </motion.p>
 
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4" onSubmit={handleUser}>
           <label htmlFor="name" className="text-xl">
             What should we call you? 👤
           </label>
           <Input
             id="name"
             type="text"
-            value={username}
+            value={user}
             required
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Eg Afolabi"
+            onChange={(e) => setUser(e.target.value)}
+            placeholder="Eg Richard"
             sx={{ color: "gray" }}
-            className="w-[20rem] h-[3rem] shadow-lg p-2.5 font-serif"
+            className="w-[20rem] h-[3rem] shadow-lg p-1 font-serif"
           />
           <Button variant="contained" type="submit">
             Continue
@@ -53,7 +52,7 @@ const OnBoarding = () => {
         </form>
       </motion.div>
       <motion.div
-        className="w-full h-[80vh]  p-3 lg:w-1/2 flex items-center justify-center"
+        className="w-full h-fit   p-3 lg:w-1/2 flex items-center justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 }}
@@ -61,7 +60,7 @@ const OnBoarding = () => {
         <img
           src={welcomeSvg}
           alt="Welcome aboard animation"
-          className="object-cover w-full"
+          className="object-cover md:max-h-[500px] w-full"
         />
       </motion.div>
     </motion.div>

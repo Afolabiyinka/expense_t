@@ -2,16 +2,16 @@ import React from "react";
 import { ArrowUp, ArrowDown, DollarSign } from "lucide-react";
 import { IconButton } from "@mui/material";
 
-const MoneyCard = ({ income = true, amount = 12000 }) => {
+const MoneyCard = ({ income = true, amount = 15000 }) => {
   return (
-    <div className="border w-[15rem] rounded-xl p-2 flex h-[4.5rem] items-center gap-2 shadow-sm">
+    <div className="border rounded-xl w-fit p-3 flex items-center shadow-sm">
+      <span className="flex items-center gap-1 text-lg">
+        <span className="text-[1.7rem] font-mono font-bold">₦</span>
+        <p className="text-[1.2rem] tracking-widest">{amount}</p>
+      </span>
       <IconButton color={income ? "success" : "error"}>
         {income ? <ArrowUp /> : <ArrowDown />}
       </IconButton>
-      <span className="flex items-center gap-1.5 text-lg font-semibold">
-        <DollarSign size={20} />
-        <p>{amount}</p>
-      </span>
     </div>
   );
 };

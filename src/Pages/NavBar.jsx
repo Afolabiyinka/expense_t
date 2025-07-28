@@ -8,7 +8,7 @@ function NavItems({ onClick }) {
     { name: "Home", path: "/" },
     { name: "Features", path: "/features" },
     { name: "Pricing", path: "/pricing" },
-    // { name: "Contributors", path: "/contributors" },
+    { name: "Contributors", path: "/contributors" },
   ];
 
   const location = useLocation();
@@ -19,12 +19,12 @@ function NavItems({ onClick }) {
         {NAVLINKS.map((navlink) => (
           <li
             key={navlink.name}
-            className="flex items-center gap-x-2 p-2 text-sm font-medium transition-colors duration-300  group"
+            className="flex items-center gap-x-2 p-2 text-sm font-medium transition-colors duration-1000  group"
           >
             <Link
               to={navlink.path}
               onClick={onClick}
-              className={` hover:text-gray-500 transition-colors duration-300 ${
+              className={` hover:text-gray-500 transition-colors duration-1000 ${
                 location.pathname === navlink.path
                   ? "underline underline-offset-4 text-wrap"
                   : ""
@@ -34,7 +34,7 @@ function NavItems({ onClick }) {
             </Link>
           </li>
         ))}
-        <ModeToggle />
+        {/* <ModeToggle /> */}
       </ul>
     </nav>
   );
@@ -45,13 +45,13 @@ const NavBar = () => {
   return (
     <div>
       <div
-        className={`shadow-md rounded-4xl  m-1.5 flex justify-between lg:justify-center lg:gap-56  lg:items-center px-3 py-4 transition-transform duration-500 border-[1px] backdrop-blur-2xl ${
-          openNav ? "translate-y-2" : "translate-y-0"
+        className={`shadow-md rounded-3xl  m-1.5 flex justify-between lg:justify-center b lg:gap-56 px-3 py-4 transition-transform duration-1000  border-[1px] backdrop-blur-2xl ${
+          openNav ? "translate-y-4" : "translate-y-0"
         }`}
       >
         <a
           href="/"
-          className="flex gap-2  text-white dark:bg-gray-600 h-11 w-[11rem] rounded-xl justify-center items-center text-xl md:text-2xl ml-4 mb-1 font-semibold tracking-wide"
+          className="flex gap-1 h-11 w-[11rem] rounded-xl justify-center items-center text-xl md:text-2xl  font-semibold tracking-wide"
         >
           <DollarSign />
           Expense T
@@ -69,7 +69,7 @@ const NavBar = () => {
         </div>
 
         <span
-          className="block lg:hidden ml-1"
+          className="block lg:hidden ml-1 mt-1.5"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? <X size={30} /> : <Menu size={30} />}

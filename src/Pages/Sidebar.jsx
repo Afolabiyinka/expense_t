@@ -1,19 +1,29 @@
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { useState } from "react";
-import { X, Menu, Home, DollarSign, BarChart, Tags, Pen } from "lucide-react";
+import {
+  X,
+  Menu,
+  Home,
+  DollarSign,
+  BarChart,
+  Tags,
+  Pen,
+  Check,
+} from "lucide-react";
 import ModeToggle from "../Components/ModeToggle";
+import { useUser } from "../Context/UserContext";
 
 const Aside = () => {
   const ASIDEITEMS = [
     { name: "Home", icon: Home, path: "/app/finances" },
-    // { name: "Categories", icon: Tags, path: "/app/categories" },
     { name: "Finances", icon: DollarSign, path: "/app/transactions" },
     { name: "Graphs", icon: BarChart, path: "/app/graph" },
   ];
 
-  const [asideOpen, setAsideOpen] = useState(false); // start closed on mobile
+  const [asideOpen, setAsideOpen] = useState(false);
   const location = useLocation();
-  const storedUser = localStorage.getItem("user") || "User";
+  const { user, setUser, handleUser } = useUser();
+  const [isEditingName, setEditingName] = useState(false);
 
   return (
     <div className="w-full flex lg:flex-row h-[100vh] relative overflow-hidden">
@@ -28,7 +38,7 @@ const Aside = () => {
       {/* ===== Mobile Toggle Button ===== */}
       <button
         onClick={() => setAsideOpen(!asideOpen)}
-        className="block md:hidden fixed top-5 left-5 z-50 p-3 m-1 rounded-full shadow-lg"
+        className="block md:hidden fixed top-1 left-1 z-50 p-3 m-1 rounded-full shadow-lg backdrop-blur-3xl"
       >
         {asideOpen ? <X size={30} /> : <Menu size={30} />}
       </button>
@@ -45,7 +55,6 @@ const Aside = () => {
           
         `}
       >
-        {/* Logo */}
         <Link
           to="/"
           className="flex gap-2  h-11 w-[13rem] rounded-lg justify-start p-1 items-center text-xl md:text-2xl  font-semibold tracking-wide"
@@ -54,27 +63,47 @@ const Aside = () => {
           Expense T
         </Link>
 
-        {/* User Info */}
-        <div className="flex items-center mb-1 gap-10  rounded-lg p-2">
+        <form
+          className="flex items-center justify-center mb-1  rounded-lg p-2"
+          onSubmit={handleUser}
+        >
           <span className="flex items-center gap-2">
             <p className="h-11 w-11 rounded-full text-2xl flex items-center justify-center font-serif bg-gradient-to-br  from-fuchsia-600 to-blue-500 text-white">
-              {storedUser?.charAt(0).toUpperCase()}
+              {user?.charAt(0).toUpperCase()}
             </p>
-            <p>{storedUser}</p>
-          </span>
-          <Pen size={18} className="cursor-pointer active:animate-pulse" />
-        </div>
 
-        {/* Navigation Links */}
+            <input
+              type="text"
+              value={user}
+              placeholder="username"
+              onChange={(e) => setUser(e.target.value)}
+              className={`w-[9rem] p-2  rounded-xl ${
+                isEditingName ? "border bg-gray-400" : "outline-none"
+              }`}
+            />
+          </span>
+          <button className="cursor-pointer active:bg-gray-500 p-2 rounded-xl">
+            {isEditingName ? (
+              <button type="submit">
+                <Check size={20} onClick={() => setEditingName(false)} />
+              </button>
+            ) : (
+              <Pen size={20} onClick={() => setEditingName(true)} />
+            )}
+          </button>
+        </form>
+
         <nav className="flex flex-col gap-4 w-full">
           {ASIDEITEMS.map(({ name, path, icon: Icon }) => (
             <Link
               key={path}
               to={path}
-              className={`flex items-center gap-3 p-2 rounded-lg transition-all duration-200 hover:-translate-y-1 ${
-                location.pathname === path ? "" : ""
+              className={`flex items-center gap-3 p-2 transition-all duration-200  ${
+                location.pathname === path
+                  ? "bg-gray-400 p-2 rounded-lg transition-all "
+                  : ""
               }`}
-              onClick={() => setAsideOpen(false)} // close on nav click (mobile)
+              onClick={() => setAsideOpen(false)}
             >
               <Icon size={24} />
               <p>{name}</p>
@@ -82,15 +111,13 @@ const Aside = () => {
           ))}
         </nav>
 
-        {/* Theme Toggle */}
         <div className="flex items-center gap-2">
           <ModeToggle />
           <label className="">Change Theme</label>
         </div>
       </div>
 
-      {/* ===== Main Content ===== */}
-      <div className="flex-1 p-4 overflow-y-auto">
+      <div className="flex-1 p-2 overflow-y-auto">
         <Outlet />
       </div>
     </div>

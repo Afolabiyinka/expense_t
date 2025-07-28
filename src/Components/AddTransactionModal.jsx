@@ -1,77 +1,152 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Wallet, DollarSign } from "lucide-react";
-import { useCategory } from "../Context/Categories";
-import { Select } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  TextField,
+  IconButton,
+} from "@mui/material";
+import { Wallet, PlusCircle, X } from "lucide-react";
+
+import { useTransactionsHook } from "../Context/FinancesContext";
 
 export default function AddTransactionModal() {
-  const [open, setOpen] = React.useState(false);
-  const { addCategory, categories } = useCategory();
+  const {
+    transactionAmount,
+    setTransactionAmount,
+    transactionName,
+    setTransactionName,
+    addTransaction,
+    categories,
+  } = useTransactionsHook();
+  const [open, setOpen] = useState(false);
+  const [selectedCat, setSelectedCat] = useState("");
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleCatChange = (e) => setSelectedCat(e.target.value);
 
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <>
+      <Button
+        variant="contained"
+        onClick={handleClickOpen}
+        startIcon={<PlusCircle size={20} />}
+        sx={{
+          borderRadius: 3,
+          height: "48px",
+          backgroundColor: "#4b5563",
+          color: "white",
+          textTransform: "none",
+          fontWeight: "bold",
+        }}
+      >
         Add a new transaction
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle
-          id="alert-dialog-title"
-          className="flex gap-2 items-center"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+            fontWeight: 500,
+            borderRadius: 3,
+          }}
         >
-          <Wallet />
-          Add a new transaction
+          <Wallet size={22} /> Add a New Transaction
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <div className="flex flex-col gap-3">
-              <span className="flex flex-col gap-1">
-                <label>Amount</label>
-                <span className="border rounded-lg flex items-center p-2.5 ">
-                  <DollarSign />
-                  <input
-                    type="number"
-                    className="w-[17rem] outline-0 p-2.5 font-bold"
-                  />
-                </span>
-              </span>
-              <span className="flex flex-col gap-2">
-                <label>Expense made for</label>
-                <span className="">
-                  <select className="p-2 rounded-xl cursor-pointer outline-0 border">
-                    {categories.map((category) => (
-                      <option className="p-1">{category.title}</option>
-                    ))}
-                  </select>
-                </span>
-              </span>
+
+        <form onSubmit={addTransaction} className="flex flex-col gap-5 p-5">
+          <fieldset className="rounded-2xl h-[4rem] p-2.5 flex justify-center items-center border">
+            <legend>Title</legend>
+            <input
+              label="Title"
+              type="text"
+              value={transactionName}
+              className="w-full h-full outline-none"
+              onChange={(e) => setTransactionName(e.target.value)}
+            />
+          </fieldset>
+          {/* Amount */}
+          <FormControl fullWidth>
+            <InputLabel shrink htmlFor="amount-input">
+              Amount
+            </InputLabel>
+            <div className="flex items-center rounded-2xl px-3 py-2 border border-gray-300 mt-3">
+              <span className="text-xl font-bold text-gray-700">₦</span>
+              <input
+                id="amount"
+                type="number"
+                value={transactionAmount}
+                onChange={(e) => setTransactionAmount(e.target.value)}
+                className="w-full p-2.5 ml-2 bg-transparent outline-none font-semibold text-lg"
+              />
             </div>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-          <Button onClick={handleClose} autoFocus>
-            Add Expense
-          </Button>
-        </DialogActions>
+          </FormControl>
+
+          {/* Category */}
+          <FormControl fullWidth>
+            <InputLabel id="cat-label">Expense made for</InputLabel>
+            <Select
+              labelId="cat-label"
+              id="cat-select"
+              value={selectedCat}
+              label="Expense made for"
+              onChange={handleCatChange}
+              sx={{ borderRadius: 4 }}
+            >
+              {categories.map((category) => (
+                <MenuItem
+                  sx={{
+                    borderRadius: 2,
+                    margin: 0.5,
+                    padding: 1,
+                  }}
+                  className="bg-gray-700 rounded-xl"
+                  key={category.id ?? category.title}
+                  value={category.id ?? category.title}
+                >
+                  {category.title}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          {/* Description */}
+
+          <div className="flex justify-between mt-2 rounded-xl p-2">
+            <Button
+              onClick={handleClose}
+              startIcon={<X size={17} />}
+              sx={{ textTransform: "none", color: "red" }}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleClose}
+              type="submit"
+              style={{
+                backgroundColor: "green",
+                color: "white",
+                textTransform: "none",
+                fontWeight: 500,
+                borderRadius: 10,
+                padding: "10px",
+                cursor: "pointer",
+              }}
+            >
+              Add Expense
+            </Button>
+          </div>
+        </form>
       </Dialog>
-    </React.Fragment>
+    </>
   );
 }

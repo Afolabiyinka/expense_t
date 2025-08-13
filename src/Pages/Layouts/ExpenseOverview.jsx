@@ -6,7 +6,7 @@ const ExpenseOverview = () => {
     <div className="mt-3 lg:mt-0 flex flex-col gap-3 border w-full p-6 lg:p-5 justify-center items-start rounded-xl shadow-md">
       <div className="flex flex-col gap-2 w-full ">
         <h1 className="text-2xl font-bold tracking-widest">Overview</h1>
-        <span className="flex gap-3 p-2 justify-center md:justify-start items-center">
+        <span className="flex flex-col md:flex-row gap-3 p-2 justify-start md:justify-start items-start">
           {" "}
           <MoneyCard income={true} />
           <MoneyCard income={false} />

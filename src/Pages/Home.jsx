@@ -4,7 +4,7 @@ import homeSvg from "../assets/undraw_savings_uwjn.svg";
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
-    <div className="flex flex-col lg:flex-row h-fit w-full gap-6 lg:gap-0 px-3 lg:px-10 py-12">
+    <div className="flex flex-col lg:flex-row h-fit w-full gap-6 lg:gap-0 px-3 lg:px-10 py-6">
       {/* Left Text Section */}
       <motion.div
         className="w-full lg:w-1/2 flex flex-col items-center justify-center gap-6 text-center"
@@ -12,11 +12,11 @@ const Home = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="tracking-wider text-2xl md:text-[2rem] font-semibold">
+        <h1 className="tracking-wider text-xl md:text-[1.5rem] font-semibold">
           Take Charge of Every ₦aira You Spend &#128181;
         </h1>
         <motion.p
-          className="md:text-xl"
+          className="md:text-lg"
           initial={{ y: -12 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
@@ -27,7 +27,7 @@ const Home = () => {
         </motion.p>
         <Link
           to="onboarding"
-          className="bg-blue-700 text-white px-6 cursor-pointer py-3 rounded-lg hover:bg-blue-800 transition duration-300"
+          className="bg-blue-600 text-white px-6 cursor-pointer py-3 rounded-xl hover:bg-blue-500 transition duration-300"
         >
           🚀 Get Started
         </Link>
@@ -35,7 +35,7 @@ const Home = () => {
 
       {/* Right Image Section */}
       <motion.div
-        className="w-full lg:w-1/2 flex items-center justify-center"
+        className="w-full lg:w-1/2 h-[80%] flex items-center justify-center"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.4 }}

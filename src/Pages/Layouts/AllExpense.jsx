@@ -8,7 +8,7 @@ const AllExpense = () => {
       <h1 className="text-xl">Your Expenses</h1>
       <span className="flex flex-col gap-2">
         {transactions.map((transaction) => (
-          <ExpenseCard transaction={transaction} />
+          <ExpenseCard transaction={transaction} key={transaction.id} />
         ))}
       </span>
     </div>

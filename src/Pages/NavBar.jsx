@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Menu, X, DollarSign } from "lucide-react";
-import ModeToggle from "../Components/ModeToggle";
-
+import etLogo from "../../public/android-chrome-192x192.png";
 function NavItems({ onClick }) {
   const NAVLINKS = [
     { name: "Home", path: "/" },
@@ -15,11 +14,11 @@ function NavItems({ onClick }) {
 
   return (
     <nav>
-      <ul className="mt-12 mr-12 flex flex-col gap-y-3 lg:mt-0 lg:flex-row lg:items-center justify-center lg:gap-x-6 z-50 ">
+      <ul className="mt-12 mr-12 flex flex-col gap-y-3 lg:mt-2 lg:flex-row lg:items-center justify-center lg:gap-x-6 z-50 ">
         {NAVLINKS.map((navlink) => (
           <li
             key={navlink.name}
-            className="flex items-center gap-x-2 p-2 text-sm font-medium transition-colors duration-1000  group"
+            className="flex items-center gap-x-2 p-1 text-[0.9rem] font-medium transition-colors duration-1000  group"
           >
             <Link
               to={navlink.path}
@@ -45,15 +44,15 @@ const NavBar = () => {
   return (
     <div>
       <div
-        className={`shadow-md rounded-3xl  m-1.5 flex justify-between lg:justify-center b lg:gap-56 px-3 py-4 transition-transform duration-1000  border-[1px] backdrop-blur-2xl ${
-          openNav ? "translate-y-4" : "translate-y-0"
+        className={`shadow-md rounded-3xl  m-1 flex justify-between lg:justify-center lg:gap-56 px-3 py-2.5 transition-transform duration-1000  border-[1px] backdrop-blur-2xl ${
+          openNav ? "translate-y-1" : "translate-y-0"
         }`}
       >
         <a
           href="/"
-          className="flex gap-1 h-11 w-[11rem] rounded-xl justify-center items-center text-xl md:text-2xl  font-semibold tracking-wide"
+          className="flex gap-1 h-11 w-[11rem] rounded-xl justify-center items-center text-xl md:text-2xl  font-semibold font-sans tracking-wide"
         >
-          <DollarSign />
+          <img src={etLogo} className="w-7 h-7" />
           Expense T
         </a>
         {/* Mobile Nav */}

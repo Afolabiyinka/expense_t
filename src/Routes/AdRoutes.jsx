@@ -6,11 +6,12 @@ import NavBar from "../Pages/NavBar";
 import Footer from "../Pages/Footer";
 import NotFound from "../Pages/NotFound";
 import OnBoarding from "../Pages/OnBoarding";
+import AdPages from "../Pages/Layouts/AdPages";
 const HomeRoute = () => {
   return (
     <Routes>
       <Route element={<NavBar />}>
-        <Route index element={<Home />} />
+        <Route index element={<AdPages />} />
         <Route path="features" element={<Features />} />
         <Route path="pricing" element={<Pricing />} />{" "}
         <Route path="onboarding" element={<OnBoarding />} />

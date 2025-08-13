@@ -12,7 +12,7 @@ import {
   TextField,
   IconButton,
 } from "@mui/material";
-import { Wallet, PlusCircle, X } from "lucide-react";
+import { Wallet, PlusCircle, X, Type } from "lucide-react";
 
 import { useTransactionsHook } from "../Context/FinancesContext";
 
@@ -34,22 +34,24 @@ export default function AddTransactionModal() {
 
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={handleClickOpen}
-        startIcon={<PlusCircle size={20} />}
-        sx={{
-          borderRadius: 3,
-          height: "48px",
-          backgroundColor: "#4b5563",
-          color: "white",
-          textTransform: "none",
-          fontWeight: "bold",
-        }}
-      >
-        Add a new transaction
-      </Button>
-
+      <span className="fixed bottom-7 right-7">
+        <IconButton
+          variant="contained"
+          onClick={handleClickOpen}
+          color="primary"
+          size="large"
+          sx={{
+            borderRadius: 3,
+            height: "48px",
+            backgroundColor: "#4b5563",
+            color: "white",
+            textTransform: "none",
+            fontWeight: "bold",
+          }}
+        >
+          <PlusCircle />
+        </IconButton>
+      </span>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle
           sx={{
@@ -64,16 +66,15 @@ export default function AddTransactionModal() {
         </DialogTitle>
 
         <form onSubmit={addTransaction} className="flex flex-col gap-5 p-5">
-          <fieldset className="rounded-2xl h-[4rem] p-2.5 flex justify-center items-center border">
-            <legend>Title</legend>
-            <input
-              label="Title"
-              type="text"
-              value={transactionName}
-              className="w-full h-full outline-none"
-              onChange={(e) => setTransactionName(e.target.value)}
-            />
-          </fieldset>
+          <TextField
+            label="Title"
+            variant="outlined"
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                borderRadius: 4,
+              },
+            }}
+          />
           {/* Amount */}
           <FormControl fullWidth>
             <InputLabel shrink htmlFor="amount-input">

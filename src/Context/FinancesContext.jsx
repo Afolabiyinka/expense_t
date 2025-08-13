@@ -35,7 +35,7 @@ export const FinanceProvider = ({ children }) => {
       },
     ]);
     localStorage.setItem("transactions", JSON.stringify(transactions));
-    alert("Transaction Added");
+    // alert("Transaction Added");
     setTransactionName("");
     setTransactionAmount(0);
     setTransactionDesc("");

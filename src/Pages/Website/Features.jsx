@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { DollarSign, GitGraph, PieChart, BarChart } from "lucide-react";
-import featuresSvg from "../assets/undraw_personal-goals_f9bb.svg";
+import featuresSvg from "../../assets/undraw_personal-goals_f9bb.svg";
 
 const Features = () => {
   const FEATUREITEMS = [

@@ -1,6 +1,7 @@
 import React from "react";
-import { Typography, Button } from "@material-tailwind/react";
-import { Flag } from "lucide-react";
+import { Typography } from "@material-tailwind/react";
+import { Button } from "@mui/material";
+import { ArrowLeft, Flag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -27,10 +28,16 @@ function NotFound({ path = "/" }) {
           Looks like you hit a broken route. Let’s get you back on track.
         </Typography>
         <Button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md w-full md:w-auto"
+          startIcon={<ArrowLeft />}
+          variant="contained"
+          size="large"
+          sx={{
+            textTransform: "none",
+            cursor: "pointer",
+          }}
           onClick={() => navigate(path)}
         >
-          Go Back Home
+          Go Home
         </Button>
       </motion.div>
     </div>

@@ -1,7 +1,5 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Router from "./Routes/Routes";
-import HomeRoute from "./Routes/AdRoutes";
-import Footer from "./Pages/Footer";
 import AdRoute from "./Routes/AdRoutes";
 export const App = () => {
   return (
@@ -10,7 +8,6 @@ export const App = () => {
         <Route path="/*" element={<AdRoute />} />
         <Route path="/app/*" element={<Router />} />
       </Routes>
-      <Footer />
     </div>
   );
 };

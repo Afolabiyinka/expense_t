@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import {
   Button,
   Dialog,
-  DialogActions,
-  DialogContent,
   DialogTitle,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
   TextField,
-  IconButton,
+  Snackbar,
+  Alert,
 } from "@mui/material";
-import { Wallet, PlusCircle, X, Type } from "lucide-react";
+import { Wallet, X, Plus } from "lucide-react";
 
 import { useTransactionsHook } from "../Context/FinancesContext";
 
@@ -20,38 +19,62 @@ export default function AddTransactionModal() {
   const {
     transactionAmount,
     setTransactionAmount,
-    transactionName,
     setTransactionName,
     addTransaction,
     categories,
+    transactionName,
   } = useTransactionsHook();
   const [open, setOpen] = useState(false);
   const [selectedCat, setSelectedCat] = useState("");
+
+  //Snackbar related hooks
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleCatChange = (e) => setSelectedCat(e.target.value);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!transactionName.trim()) {
+      return () => {
+        setSnackBarOpen(true);
+        setSnackBarMessage("Add a transaction title");
+      };
+    }
+    if (!transactionAmount.trim()) {
+      return () => {
+        setSnackBarOpen(true);
+        setSnackBarMessage("Add an amount");
+      };
+    }
+    addTransaction();
+    setSelectedCat("");
+    setOpen(false);
+  };
+
   return (
     <>
-      <span className="fixed bottom-7 right-7">
-        <IconButton
-          variant="contained"
+      <span className="ml-2">
+        <button
           onClick={handleClickOpen}
-          color="primary"
-          size="large"
-          sx={{
-            borderRadius: 3,
-            height: "48px",
-            backgroundColor: "#4b5563",
-            color: "white",
-            textTransform: "none",
-            fontWeight: "bold",
-          }}
+          className="bg-black text-white rounded-full h-15 absolute bottom-7 right-7 w-15 flex  justify-center items-center cursor-pointer"
         >
-          <PlusCircle />
-        </IconButton>
+          <Plus />
+        </button>
       </span>
+
+      {/* Message  */}
+      <Snackbar
+        open={snackBarOpen}
+        autoHideDuration={6000}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert severity="error" sx={{}}>
+          {snackBarMessage}
+        </Alert>
+      </Snackbar>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle
           sx={{
@@ -65,15 +88,17 @@ export default function AddTransactionModal() {
           <Wallet size={22} /> Add a New Transaction
         </DialogTitle>
 
-        <form onSubmit={addTransaction} className="flex flex-col gap-5 p-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-5">
           <TextField
             label="Title"
             variant="outlined"
+            value={transactionName}
             sx={{
               "& .MuiOutlinedInput-root": {
                 borderRadius: 4,
               },
             }}
+            onChange={(e) => setTransactionName(e.target.value)}
           />
           {/* Amount */}
           <FormControl fullWidth>
@@ -87,7 +112,7 @@ export default function AddTransactionModal() {
                 type="number"
                 value={transactionAmount}
                 onChange={(e) => setTransactionAmount(e.target.value)}
-                className="w-full p-2.5 ml-2 bg-transparent outline-none font-semibold text-lg"
+                className="w-full p-2.5 ml-2 bg-transparent border-gray-200 outline-none font-semibold text-lg"
               />
             </div>
           </FormControl>
@@ -126,12 +151,13 @@ export default function AddTransactionModal() {
             <Button
               onClick={handleClose}
               startIcon={<X size={17} />}
-              sx={{ textTransform: "none", color: "red" }}
+              sx={{ textTransform: "none", color: "red", padding: 1 }}
             >
               Cancel
             </Button>
             <Button
-              onClick={handleClose}
+              // onClick={handleClose}
+              endIcon={<Wallet />}
               type="submit"
               style={{
                 backgroundColor: "green",

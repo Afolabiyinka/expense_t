@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 
 const FinanceContext = createContext();
 
@@ -10,7 +10,7 @@ export const FinanceProvider = ({ children }) => {
     return storedTransactions ? JSON.parse(storedTransactions) : [];
   });
   const [transactionName, setTransactionName] = useState("");
-  const [transactionAmount, setTransactionAmount] = useState(0);
+  const [transactionAmount, setTransactionAmount] = useState();
   const [transactionDesc, setTransactionDesc] = useState("");
   const [isExpense, setIsExpense] = useState(true);
   const [categories, setCategories] = useState([
@@ -22,24 +22,26 @@ export const FinanceProvider = ({ children }) => {
     { title: "Savings", id: crypto.randomUUID() },
   ]);
 
-  function addTransaction(e) {
-    e.preventDefault();
+  function addTransaction() {
+    // e.preventDefault();
     setTransactions((currentTransactions) => [
       ...currentTransactions,
       {
         id: Date.now(),
-        transactionName,
-        transactionAmount,
-        transactionDesc,
-        isExpense,
+        name: transactionName,
+        amount: transactionAmount,
+        desc: transactionDesc,
+        status: isExpense,
       },
     ]);
     localStorage.setItem("transactions", JSON.stringify(transactions));
-    // alert("Transaction Added");
     setTransactionName("");
-    setTransactionAmount(0);
+    setTransactionAmount();
     setTransactionDesc("");
   }
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
 
   const value = {
     transactions,

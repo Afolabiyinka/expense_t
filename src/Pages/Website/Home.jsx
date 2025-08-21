@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import homeSvg from "../assets/undraw_savings_uwjn.svg";
+import homeSvg from "../../assets/undraw_savings_uwjn.svg";
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
-    <div className="flex flex-col lg:flex-row h-fit w-full gap-6 lg:gap-0 px-3 lg:px-10 py-6">
+    <div className="flex flex-col lg:flex-row h-fit w-full gap-6 lg:gap-0 px-3 lg:px-10 py-6 text-gray-900">
       {/* Left Text Section */}
       <motion.div
         className="w-full lg:w-1/2 flex flex-col items-center justify-center gap-6 text-center"

@@ -1,9 +1,10 @@
-import welcomeSvg from "../assets/undraw_welcome-aboard_y4e9.svg";
+import welcomeSvg from "../../assets/undraw_welcome-aboard_y4e9.svg";
 import { useEffect } from "react";
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
 import { motion } from "framer-motion";
-import { useUser } from "../Context/UserContext";
+import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import ProfilePicUpload from "../App/ProfilePic";
 
 const OnBoarding = () => {
   const navigate = useNavigate();
@@ -36,16 +37,18 @@ const OnBoarding = () => {
           <label htmlFor="name" className="text-xl">
             What should we call you? 👤
           </label>
-          <Input
-            id="name"
-            type="text"
-            value={user}
-            required
-            onChange={(e) => setUser(e.target.value)}
-            placeholder="Eg Richard"
-            sx={{ color: "gray" }}
-            className="w-[20rem] h-[3rem] shadow-lg p-1 font-serif"
-          />
+          <span className="flex gap-3 items-center">
+            <ProfilePicUpload />
+            <input
+              id="name"
+              type="text"
+              value={user}
+              required
+              onChange={(e) => setUser(e.target.value)}
+              placeholder="Eg Richard"
+              className="w-[16rem] h-[3rem] shadow rounded-lg p-2 font-serif bg-inherit outline-0 text-black"
+            />
+          </span>
           <Button variant="contained" type="submit">
             Continue
           </Button>

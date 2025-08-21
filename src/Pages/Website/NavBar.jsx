@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Menu, X, DollarSign } from "lucide-react";
-import etLogo from "../../public/android-chrome-192x192.png";
+import etLogo from "../../../public/android-chrome-192x192.png";
 function NavItems({ onClick }) {
   const NAVLINKS = [
     { name: "Home", path: "/" },
@@ -25,7 +25,7 @@ function NavItems({ onClick }) {
               onClick={onClick}
               className={` hover:text-gray-500 transition-colors duration-1000 ${
                 location.pathname === navlink.path
-                  ? "underline underline-offset-4 text-wrap"
+                  ? "underline underline-offset-4  text-wrap"
                   : ""
               }`}
             >
@@ -44,8 +44,8 @@ const NavBar = () => {
   return (
     <div>
       <div
-        className={`shadow-md rounded-3xl  m-1 flex justify-between lg:justify-center lg:gap-56 px-3 py-2.5 transition-transform duration-1000  border-[1px] backdrop-blur-2xl ${
-          openNav ? "translate-y-1" : "translate-y-0"
+        className={`shadow-md rounded-3xl  m-1 flex justify-between lg:justify-center lg:gap-56 px-3 py-2.5 transition-transform duration-1000 ease-in-out  border border-gray-400 text-gray-900 ${
+          openNav ? "translate-y-0" : "translate-y-0"
         }`}
       >
         <a
@@ -68,10 +68,24 @@ const NavBar = () => {
         </div>
 
         <span
-          className="block lg:hidden ml-1 mt-1.5"
+          className="block lg:hidden ml-1 mt-1.5 transition-all  ease-in-out duration-700 bg-inherit p-2 rounded-full"
           onClick={() => setOpenNav(!openNav)}
         >
-          {openNav ? <X size={30} /> : <Menu size={30} />}
+          {openNav ? (
+            <X
+              size={30}
+              className={`${
+                openNav ? "active:rotate-180 transition-all duration-1000" : ""
+              }`}
+            />
+          ) : (
+            <Menu
+              size={30}
+              className={`  active:bg-gray-2 rounded-md ${
+                openNav ? "active:rotate-90 transition-all duration-1000" : ""
+              }`}
+            />
+          )}
         </span>
       </div>
       <Outlet />

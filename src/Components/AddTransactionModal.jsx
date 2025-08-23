@@ -10,10 +10,12 @@ import {
   TextField,
   Snackbar,
   Alert,
+  Menu,
 } from "@mui/material";
-import { Wallet, X, Plus } from "lucide-react";
+import { Wallet, X, Plus, MenuIcon } from "lucide-react";
 
 import { useTransactionsHook } from "../Context/FinancesContext";
+import { NumericFormat } from "react-number-format";
 
 export default function AddTransactionModal() {
   const {
@@ -38,18 +40,27 @@ export default function AddTransactionModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!transactionName.trim()) {
-      return () => {
-        setSnackBarOpen(true);
-        setSnackBarMessage("Add a transaction title");
-      };
+      setSnackBarMessage("Add a transaction title");
+      setSnackBarOpen(true);
+      return;
     }
-    if (!transactionAmount.trim()) {
-      return () => {
-        setSnackBarOpen(true);
-        setSnackBarMessage("Add an amount");
-      };
+    if (!transactionAmount) {
+      setSnackBarMessage("Add an amount");
+      setSnackBarOpen(true);
+      return;
     }
+    if (!selectedCat) {
+      setSnackBarMessage("Please select a category");
+      setSnackBarOpen(true);
+      return;
+    }
+
+    // Success case
     addTransaction();
+    setSnackBarMessage("Transaction added successfully 🎉");
+    setSnackBarOpen(true);
+
+    // reset
     setSelectedCat("");
     setOpen(false);
   };
@@ -59,7 +70,7 @@ export default function AddTransactionModal() {
       <span className="ml-2">
         <button
           onClick={handleClickOpen}
-          className="bg-black text-white rounded-full h-15 absolute bottom-7 right-7 w-15 flex  justify-center items-center cursor-pointer"
+          className="bg-black text-white rounded-full h-15 absolute bottom-14 right-7 w-15 flex  justify-center items-center cursor-pointer"
         >
           <Plus />
         </button>
@@ -68,14 +79,21 @@ export default function AddTransactionModal() {
       {/* Message  */}
       <Snackbar
         open={snackBarOpen}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
+        onClose={() => setSnackBarOpen(false)}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
-        <Alert severity="error" sx={{}}>
+        <Alert
+          severity={
+            snackBarMessage.includes("successfully") ? "success" : "error"
+          }
+          onClose={() => setSnackBarOpen(false)}
+        >
           {snackBarMessage}
         </Alert>
       </Snackbar>
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+
+      <Dialog open={open} onClose={handleClose} maxWidth="lg">
         <DialogTitle
           sx={{
             display: "flex",
@@ -102,19 +120,17 @@ export default function AddTransactionModal() {
           />
           {/* Amount */}
           <FormControl fullWidth>
-            <InputLabel shrink htmlFor="amount-input">
-              Amount
-            </InputLabel>
-            <div className="flex items-center rounded-2xl px-3 py-2 border border-gray-300 mt-3">
-              <span className="text-xl font-bold text-gray-700">₦</span>
-              <input
-                id="amount"
-                type="number"
-                value={transactionAmount}
-                onChange={(e) => setTransactionAmount(e.target.value)}
-                className="w-full p-2.5 ml-2 bg-transparent border-gray-200 outline-none font-semibold text-lg"
-              />
-            </div>
+            <NumericFormat
+              prefix="₦"
+              customInput={TextField}
+              label="Amount"
+              thousandSeparator
+              allowNegative={false}
+              value={transactionAmount}
+              onValueChange={(e) => setTransactionAmount(e.floatValue)}
+              fullWidth
+              className="border-gray-300"
+            />
           </FormControl>
 
           {/* Category */}
@@ -126,7 +142,7 @@ export default function AddTransactionModal() {
               value={selectedCat}
               label="Expense made for"
               onChange={handleCatChange}
-              sx={{ borderRadius: 4 }}
+              sx={{ borderRadius: 4, display: "flex" }}
             >
               {categories.map((category) => (
                 <MenuItem
@@ -135,10 +151,11 @@ export default function AddTransactionModal() {
                     margin: 0.5,
                     padding: 1,
                   }}
-                  className="bg-gray-700 rounded-xl"
+                  className="bg-gray-700 rounded-xl flex gap-2"
                   key={category.id ?? category.title}
                   value={category.id ?? category.title}
                 >
+                  <span>{category.icon}</span>
                   {category.title}
                 </MenuItem>
               ))}

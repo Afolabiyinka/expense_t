@@ -1,3 +1,15 @@
+import {
+  Utensils,
+  Bus,
+  ShoppingCart,
+  Smartphone,
+  Home,
+  Wallet,
+  Shirt,
+  HeartPulse,
+  Film,
+  MoreHorizontal,
+} from "lucide-react";
 import { useContext, createContext, useState, useEffect } from "react";
 
 const FinanceContext = createContext();
@@ -13,17 +25,69 @@ export const FinanceProvider = ({ children }) => {
   const [transactionAmount, setTransactionAmount] = useState();
   const [transactionDesc, setTransactionDesc] = useState("");
   const [isExpense, setIsExpense] = useState(true);
+  const [totalIncome, setTotalIncome] = useState(null);
+  const [totalExpenses, setTotalExpenses] = useState(null);
+
   const [categories, setCategories] = useState([
-    { title: "Food", id: crypto.randomUUID() },
-    { title: "Entertainment", id: crypto.randomUUID() },
-    { title: "Clothing", id: crypto.randomUUID() },
-    { title: "Education", id: crypto.randomUUID() },
-    { title: "Healthcare", id: crypto.randomUUID() },
-    { title: "Savings", id: crypto.randomUUID() },
+    {
+      title: "Food & Drinks",
+      icon: <Utensils size={20} />,
+      id: crypto.randomUUID(),
+    },
+    { title: "Transport", icon: <Bus size={20} />, id: crypto.randomUUID() },
+    {
+      title: "Groceries",
+      icon: <ShoppingCart size={20} />,
+      id: crypto.randomUUID(),
+    },
+    {
+      title: "Data & Airtime",
+      icon: <Smartphone size={20} />,
+      id: crypto.randomUUID(),
+    },
+    {
+      title: "Bills (Light/Water)",
+      icon: <Wallet size={20} />,
+      id: crypto.randomUUID(),
+    },
+    { title: "Rent", icon: <Home size={20} />, id: crypto.randomUUID() },
+    { title: "Shopping", icon: <Shirt size={20} />, id: crypto.randomUUID() },
+    {
+      title: "Healthcare",
+      icon: <HeartPulse size={20} />,
+      id: crypto.randomUUID(),
+    },
+    {
+      title: "Entertainment",
+      icon: <Film size={20} />,
+      id: crypto.randomUUID(),
+    },
+    {
+      title: "Miscellaneous",
+      icon: <MoreHorizontal size={20} />,
+      id: crypto.randomUUID(),
+    },
   ]);
+  function calculateExpenses() {
+    let income = 0;
+    let Expenses = 0;
+
+    transactions.forEach((transaction) => {
+      if (transaction.status === true) {
+        Expenses += Number(transaction.amount);
+        setTotalExpenses(Expenses);
+      } else {
+        income += Number(transaction.amount);
+        setTotalIncome(income);
+      }
+    });
+  }
+
+  useEffect(() => {
+    calculateExpenses();
+  }, [transactions]);
 
   function addTransaction() {
-    // e.preventDefault();
     setTransactions((currentTransactions) => [
       ...currentTransactions,
       {
@@ -56,6 +120,8 @@ export const FinanceProvider = ({ children }) => {
     addTransaction,
     isExpense,
     setIsExpense,
+    totalExpenses,
+    totalIncome,
   };
 
   return (

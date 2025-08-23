@@ -5,13 +5,11 @@ import { Wallet } from "lucide-react";
 const AllExpense = () => {
   const { transactions } = useTransactionsHook();
   return (
-    <div className="flex flex-col  w-full h-full border border-gray-400 gap-3 rounded-xl p-3 overflow-y-scroll">
+    <div className="flex flex-col w-full h-full border border-gray-400 gap-3 rounded-xl p-3 overflow-y-scroll">
       {transactions && transactions.length > 0 ? (
         <div>
-          <h1 className="text-xl underline underline-offset-8 mb-3">
-            Your Expenses
-          </h1>
-          <span className="flex flex-col gap-2">
+          <h1 className="text-xl  mb-6">Your Expenses</h1>
+          <span className="flex flex-col gap-3">
             {transactions.map((transaction) => (
               <ExpenseCard transaction={transaction} key={transaction.id} />
             ))}

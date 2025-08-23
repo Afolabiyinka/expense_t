@@ -12,8 +12,8 @@ const Home = () => {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="tracking-wider text-xl md:text-[1.5rem] font-semibold">
-          Take Charge of Every ₦aira You Spend &#128181;
+        <h1 className="tracking-wider text-2xl md:text-4xl font-bold">
+          Take Charge of Every ₦aira You Spend
         </h1>
         <motion.p
           className="md:text-lg"
@@ -27,7 +27,7 @@ const Home = () => {
         </motion.p>
         <Link
           to="onboarding"
-          className="bg-blue-600 text-white px-6 cursor-pointer py-3 rounded-xl hover:bg-blue-500 transition duration-300"
+          className="bg-purple-500 text-white px-9 cursor-pointer py-3 rounded-xl hover:bg-purple-600 hover:shadow transition duration-300"
         >
           🚀 Get Started
         </Link>

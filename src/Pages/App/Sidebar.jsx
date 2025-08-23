@@ -31,16 +31,13 @@ const Aside = () => {
     <div className="w-full flex lg:flex-row h-screen relative">
       {/* ===== Overlay for Mobile ===== */}
       {asideOpen && (
-        <div
-          onClick={() => setAsideOpen(false)}
-          className="fixed inset-0 bg-opacity-50 z-30 lg:hidden"
-        />
+        <div onClick={() => setAsideOpen(false)} className="w-fit lg:hidden" />
       )}
 
       {/* ===== Mobile Toggle Button ===== */}
       <button
         onClick={() => setAsideOpen(!asideOpen)}
-        className="block lg:hidden fixed top-1 left-1 z-50 p-3 m-1 rounded-full shadow-lg backdrop-blur-3xl"
+        className="block lg:hidden fixed top-2 left-2 z-50 p-3 m-1 rounded-full shadow-lg backdrop-blur-3xl"
       >
         {asideOpen ? <X size={30} /> : <Menu size={30} />}
       </button>
@@ -52,7 +49,7 @@ const Aside = () => {
           ${asideOpen ? "translate-x-0" : "-translate-x-full"}
           lg:relative lg:translate-x-0
           transition-transform duration-300 ease-in-out
-          lg:w-[17rem] w-[20rem] backdrop-blur-2xl border border-gray-300 p-2 lg:p-4
+          lg:w-[17rem] w-[20rem] bg-white border border-gray-300 p-2 lg:p-4
           rounded-r-xl flex flex-col items-start justify-center gap-9
           
           

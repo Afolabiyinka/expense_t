@@ -27,6 +27,7 @@ export const FinanceProvider = ({ children }) => {
   const [isExpense, setIsExpense] = useState(true);
   const [totalIncome, setTotalIncome] = useState(null);
   const [totalExpenses, setTotalExpenses] = useState(null);
+  const [expenseIcon, setExpenseIcon] = useState(null);
 
   const [categories, setCategories] = useState([
     {
@@ -96,6 +97,7 @@ export const FinanceProvider = ({ children }) => {
         amount: transactionAmount,
         desc: transactionDesc,
         status: isExpense,
+        icon: expenseIcon,
       },
     ]);
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -122,6 +124,8 @@ export const FinanceProvider = ({ children }) => {
     setIsExpense,
     totalExpenses,
     totalIncome,
+    expenseIcon,
+    setExpenseIcon,
   };
 
   return (

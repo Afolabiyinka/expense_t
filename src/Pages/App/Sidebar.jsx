@@ -50,7 +50,7 @@ const Aside = () => {
           lg:relative lg:translate-x-0
           transition-transform duration-300 ease-in-out
           lg:w-[17rem] w-[20rem] bg-white border border-gray-300 p-2 lg:p-4
-          rounded-r-xl flex flex-col items-start justify-center gap-9
+           flex flex-col items-start justify-center gap-9
           
           
         `}

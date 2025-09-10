@@ -104,6 +104,8 @@ export const FinanceProvider = ({ children }) => {
     setTransactionName("");
     setTransactionAmount();
     setTransactionDesc("");
+    console.log(transactions);
+    console.log(expenseIcon);
   }
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));

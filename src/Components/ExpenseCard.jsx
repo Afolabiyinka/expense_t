@@ -13,12 +13,15 @@ const ExpenseCard = ({ transaction }) => {
     >
       <div className="w-full  shadow rounded-lg px-4 py-3 flex items-center justify-between gap-3">
         <div className="flex gap-2 items-center">
-          <div className="p-1.5  rounded-full bg-gray-400">
+          {/* <div className="p-1.5  rounded-full bg-gray-400">
             {transaction?.status ? (
               <ArrowDown className="text-red-500" />
             ) : (
               <ArrowUp className="text-green-500" />
             )}
+          </div> */}
+          <div className="p-1.5  rounded-full bg-gray-400">
+            {/* {transaction.i} */}
           </div>
           <div className="flex flex-col  w-full">
             <h2 className="font-semibold">{transaction?.name}</h2>

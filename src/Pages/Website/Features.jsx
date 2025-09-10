@@ -28,7 +28,7 @@ const Features = () => {
         className="flex flex-col gap-5 lg:w-[50%] justify-center"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        onViewportEnter="visible"
       >
         <h1 className="text-center text-2xl md:text-3xl font-semibold mb-2">
           Why Choose Our Expense Tracker?

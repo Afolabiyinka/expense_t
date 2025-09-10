@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
+import CustomBotton from "./CustomBotton";
 import Box from "@mui/material/Box";
 import paymentSvg from "../assets/undraw_pay-online_806n.svg";
 import { Link } from "react-router-dom";
@@ -66,24 +66,7 @@ export default function PricingCard() {
         </Typography>
       </CardContent>
       <Box sx={{ width: "100%", textAlign: "center" }}>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{
-            backgroundColor: "#2a3eb1",
-            borderRadius: 3,
-            px: 6,
-            py: 1.5,
-            textTransform: "none",
-            fontWeight: "600",
-            transition: "background-color 0.3s ease",
-            "&:hover": {
-              backgroundColor: "#1e2a85",
-            },
-          }}
-        >
-          <Link to="/onboarding">Get Started</Link>
-        </Button>
+        <CustomBotton path={`/onboarding`} text={`Try it now`} />
       </Box>
     </Card>
   );

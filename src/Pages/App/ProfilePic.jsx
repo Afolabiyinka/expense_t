@@ -6,7 +6,7 @@ function ProfilePicUpload() {
   useEffect(() => {
     const savedPic = localStorage.getItem("profilePic");
     if (savedPic) setProfilePic(savedPic);
-  }, []);
+  }, [profilePic]);
 
   const handleChange = (e) => {
     const file = e.target.files[0];

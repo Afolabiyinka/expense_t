@@ -18,7 +18,6 @@ export const UserProvider = ({ children }) => {
     navigate("/app/finances");
     console.log(user);
   }
-  // useEffect(() => {}, [user]);
   const value = { user, setUser, handleUser };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

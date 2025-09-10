@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { ArrowLeft, Flag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import CustomBotton from "../../Components/CustomBotton";
 function NotFound({ path = "/" }) {
   const navigate = useNavigate();
 
@@ -27,18 +27,7 @@ function NotFound({ path = "/" }) {
         <Typography className="mt-4 mb-8 text-gray-600">
           Looks like you hit a broken route. Let’s get you back on track.
         </Typography>
-        <Button
-          startIcon={<ArrowLeft />}
-          variant="contained"
-          size="large"
-          sx={{
-            textTransform: "none",
-            cursor: "pointer",
-          }}
-          onClick={() => navigate(path)}
-        >
-          Go Home
-        </Button>
+        <CustomBotton path={path} text={`Go Home`} />
       </motion.div>
     </div>
   );

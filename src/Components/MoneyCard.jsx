@@ -19,7 +19,7 @@ const MoneyCard = ({ amount, income }) => {
             className="text-[1.7rem] tracking-widest"
           />
         </span>
-        <p className="fixed bottom-9 text-sm font-light right-3">NGN</p>
+        {/* <p className="fixed bottom-9 text-sm font-light right-3">NGN</p> */}
       </div>
     </div>
   );

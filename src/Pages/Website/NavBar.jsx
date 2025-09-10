@@ -44,7 +44,7 @@ const NavBar = () => {
   return (
     <div>
       <div
-        className={`shadow-md rounded-3xl  m-1 flex justify-between lg:justify-center lg:gap-56 px-3 py-2.5 transition-transform duration-1000 ease-in-out  border border-gray-400 text-gray-900 ${
+        className={`shadow-md rounded-3xl  m-1 flex justify-between lg:justify-center lg:gap-56 px-3 py-3.5 transition-transform duration-1000 ease-in-out  border border-gray-400 text-gray-900 ${
           openNav ? "translate-y-0" : "translate-y-0"
         }`}
       >
@@ -68,20 +68,20 @@ const NavBar = () => {
         </div>
 
         <span
-          className="block lg:hidden ml-1 mt-1.5 transition-all  ease-in-out duration-700 bg-inherit p-2 rounded-full"
+          className="block lg:hidden ml-1 mt-1.5 transition-all fixed top-1 right-2 ease-in-out duration-700 bg-inherit p-2 rounded-full"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (
             <X
               size={30}
-              className={`${
+              className={` stroke-[1px] ${
                 openNav ? "active:rotate-180 transition-all duration-1000" : ""
               }`}
             />
           ) : (
             <Menu
               size={30}
-              className={`  active:bg-gray-2 rounded-md ${
+              className={`  rounded-md stroke-[1px] ${
                 openNav ? "active:rotate-90 transition-all duration-1000" : ""
               }`}
             />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Menu, X, DollarSign } from "lucide-react";
-import etLogo from "../../../public/android-chrome-192x192.png";
+import eTLogo from "../../assets/Icons and Logos/Gemini_Generated_Image_iojhbviojhbviojh.png";
 function NavItems({ onClick }) {
   const NAVLINKS = [
     { name: "Home", path: "/" },
@@ -48,13 +48,15 @@ const NavBar = () => {
           openNav ? "translate-y-0" : "translate-y-0"
         }`}
       >
-        <a
-          href="/"
-          className="flex gap-1 h-11 w-[11rem] rounded-xl justify-center items-center text-xl md:text-2xl  font-semibold font-sans tracking-wide"
-        >
-          <img src={etLogo} className="w-7 h-7" />
-          Expense T
-        </a>
+        <div>
+          <a href="/">
+            <img
+              src={eTLogo}
+              alt=""
+              className="h-12 bg-white  rounded-full w-[13rem]  mr-2"
+            />
+          </a>
+        </div>
         {/* Mobile Nav */}
         {openNav && (
           <div className="block lg:hidden">

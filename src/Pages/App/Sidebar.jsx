@@ -12,7 +12,7 @@ import {
   Plus,
 } from "lucide-react";
 import { useUser } from "../../Context/UserContext";
-import expenseTLogo from "../../../public/android-chrome-192x192.png";
+import expenseTLogo from "../../assets/Icons and Logos/Expenset logo 1.png";
 import ProfilePicUpload from "./ProfilePic";
 const Aside = () => {
   const ASIDEITEMS = [
@@ -65,12 +65,13 @@ const Aside = () => {
           to="/"
           className="flex gap-2  justify-start p-1 items-center text-xl md:text-2xl  font-semibold tracking-wide"
         >
-          <img
-            src={expenseTLogo}
-            className="h-11 w-11
-          "
-          />
-          Expense T
+          <div>
+            <img
+              src={expenseTLogo}
+              alt=""
+              className="h-12 bg-white  rounded-full w-[13rem]  mr-2"
+            />
+          </div>
         </Link>
         {/* User Info */}
         <div className="w-full">

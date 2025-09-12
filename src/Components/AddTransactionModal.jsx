@@ -148,17 +148,11 @@ export default function AddTransactionModal() {
                     value={selectedCat}
                     label="Expense made for"
                     onChange={handleCatChange}
-                    className="flex"
-                    sx={{ borderRadius: 4 }}
+                    className=""
                   >
                     {categories.map((category) => (
                       <MenuItem
-                        sx={{
-                          borderRadius: 2,
-                          margin: 0.5,
-                          padding: 1,
-                        }}
-                        className="bg-gray-700 rounded-xl flex gap-2 p-1"
+                        className="bg-gray-700 rounded-xl flex gap-2 p-2"
                         key={category.id ?? category.title}
                         value={category.id ?? category.title}
                       >

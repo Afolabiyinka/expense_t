@@ -37,6 +37,7 @@ const ExpenseCard = ({ transaction }) => {
             transaction?.status ? "text-red-600" : "text-green-500"
           }`}
         />
+        <p>{transaction.category}</p>
       </div>
       {isClicked && <div>Hellos</div>}
     </motion.div>

@@ -73,17 +73,14 @@ const Aside = () => {
           Expense T
         </Link>
         {/* User Info */}
-        <div
-          className="relative
-        "
-        >
+        <div className="w-full">
           <div
-            className="flex items-center justify-start mb-1  border border-gray-400 rounded-3xl w-[14.5rem] py-2 p-3 shadow-sm cursor-pointer hover:bg-gray-500 transition-all duration-700s"
+            className="flex items-center justify-start mb-1  border border-gray-400 rounded-3xl w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-gray-300 transition-all duration-700s"
             onClick={() => setEditingInfo(true)}
           >
             <span className="flex items-center gap-2">
               <ProfilePicUpload />
-              <p className="">{user}</p>
+              <p className="font-bold">{user}</p>
             </span>
           </div>
 

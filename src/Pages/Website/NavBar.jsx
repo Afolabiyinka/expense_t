@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
-import { Menu, X, DollarSign } from "lucide-react";
+import { Menu, X, } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import eTLogo from "../../assets/Icons and Logos/Gemini_Generated_Image_iojhbviojhbviojh.png";
 function NavItems({ onClick }) {
   const NAVLINKS = [
@@ -18,16 +19,15 @@ function NavItems({ onClick }) {
         {NAVLINKS.map((navlink) => (
           <li
             key={navlink.name}
-            className="flex items-center gap-x-2 p-1 text-[0.9rem] font-medium transition-colors duration-1000  group"
+            className="flex items-center gap-x-2 p-1 text-[0.93rem] font-medium transition-colors duration-1000  group"
           >
             <Link
               to={navlink.path}
               onClick={onClick}
-              className={` hover:text-gray-500 transition-colors duration-1000 ${
-                location.pathname === navlink.path
-                  ? "underline underline-offset-4  text-wrap"
-                  : ""
-              }`}
+              className={` hover:text-gray-500 transition-colors duration-1000 ${location.pathname === navlink.path
+                ? "underline underline-offset-4  text-wrap"
+                : ""
+                }`}
             >
               {navlink.name}
             </Link>
@@ -40,13 +40,28 @@ function NavItems({ onClick }) {
 }
 const NavBar = () => {
   const [openNav, setOpenNav] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+
+
+  useState(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [])
 
   return (
-    <div>
-      <div
-        className={`shadow-md rounded-3xl  m-1 flex justify-between lg:justify-center lg:gap-56 px-3 py-3.5 transition-transform duration-1000 ease-in-out  border border-gray-400 text-gray-900 ${
-          openNav ? "translate-y-0" : "translate-y-0"
-        }`}
+    <motion.div className="flex flex-col items-center  gap-[2rem]">
+      <motion.div
+
+        className={`${isScrolled ? "bg-gray-100 fixed border border-gray-300 shadow lg:w-fit transition-transition duration-750 ease-in-out" : ""} md:rounded-full rounded-3xl mt-1.5
+           shadow  z-50  flex justify-between lg:justify-center lg:gap-56 p-3  w-full  text-gray-900 ${openNav ? "translate-y-0" : "translate-y-0"
+          }`}
       >
         <div>
           <a href="/">
@@ -58,11 +73,18 @@ const NavBar = () => {
           </a>
         </div>
         {/* Mobile Nav */}
-        {openNav && (
-          <div className="block lg:hidden">
-            <NavItems onClick={() => setOpenNav(false)} />
-          </div>
-        )}
+        <AnimatePresence>
+          {openNav && (
+            <motion.div className="block lg:hidden"
+              initial={{ y: -20 }}
+              animate={{ y: 0 }}
+              exit={{ y: -20 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+            >
+              <NavItems onClick={() => setOpenNav(false)} />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Desktop Nav */}
         <div className="hidden lg:block">
@@ -76,22 +98,20 @@ const NavBar = () => {
           {openNav ? (
             <X
               size={30}
-              className={` stroke-[1px] ${
-                openNav ? "active:rotate-180 transition-all duration-1000" : ""
-              }`}
+              className={` stroke-[1px] ${openNav ? "active:rotate-180 transition-all duration-1000" : ""
+                }`}
             />
           ) : (
             <Menu
               size={30}
-              className={`  rounded-md stroke-[1px] ${
-                openNav ? "active:rotate-90 transition-all duration-1000" : ""
-              }`}
+              className={`  rounded-md stroke-[1px] ${openNav ? "active:rotate-90 transition-all duration-1000" : ""
+                }`}
             />
           )}
         </span>
-      </div>
+      </motion.div>
       <Outlet />
-    </div>
+    </motion.div>
   );
 };
 

@@ -5,8 +5,8 @@ import { IconButton } from "@mui/material";
 const MoneyCard = ({ amount, income }) => {
   return (
     <div>
-      <p className="ml-3">{income ? "Income" : "Spent"}</p>
-      <div className="relative border border-gray-200 shadow text-white rounded-3xl w-[15rem] md:p-3.5  p-2 flex bg-black/90">
+      <p className="ml-5">{income ? "Income" : "Spent"}</p>
+      <div className="relative border border-gray-200 shadow text-white rounded-full w-[15rem] md:p-3.5  p-2 flex bg-black/90">
         <IconButton color={income ? "success" : "error"} size="large">
           {income ? <p>+</p> : <p>-</p>}
         </IconButton>

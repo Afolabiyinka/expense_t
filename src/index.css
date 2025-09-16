@@ -1,14 +1,6 @@
 @import "tailwindcss";
 
-.light {
-  color: black;
-  background: white;
-}
-.dark {
-  /* background-color: rgb(44, 43, 43); */
-  background: linear-gradient(135deg, #081018 0%, #031516 100%);
-  color: white;
-}
+
 * {
   scroll-behavior: smooth;
   transition: all 0.2s;
@@ -39,29 +31,9 @@
   width: 10px;
 }
 /* Global CSS or your component's CSS file */
-input::placeholder {
-  color: white;
-}
 
-input::-webkit-input-placeholder {
-  /* Chrome, Safari, Opera */
-  color: white;
-}
 
-input::-moz-placeholder {
-  /* Firefox 19+ */
-  color: white;
-}
 
-input:-ms-input-placeholder {
-  /* IE 10+ */
-  color: white;
-}
-
-input:-moz-placeholder {
-  /* Firefox 4-18 */
-  color: white;
-}
 body {
   font-family: "Inter", sans-serif;
 }

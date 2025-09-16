@@ -16,6 +16,7 @@ import { Wallet, X, Plus, MenuIcon, Icon } from "lucide-react";
 
 import { useTransactionsHook } from "../Context/FinancesContext";
 import { NumericFormat } from "react-number-format";
+import { motion } from "framer-motion";
 
 export default function AddTransactionModal() {
   const {
@@ -68,15 +69,16 @@ export default function AddTransactionModal() {
   };
 
   return (
-    <div className="">
-      <span className="ml-2">
-        <button
+    <div>
+      <motion.span className="ml-2">
+        <motion.button
           onClick={handleClickOpen}
-          className="bg-purple-600 text-white rounded-full h-15 absolute bottom-14 right-10 w-15 flex  justify-center items-center cursor-pointer"
+          className="bg-purple-600 text-white rounded-full h-15 absolute bottom-14 z-50 right-10 w-15 flex  justify-center items-center cursor-pointer "
         >
           <Plus />
-        </button>
-      </span>
+        </motion.button>
+
+      </motion.span>
 
       {/* Message  */}
       <Snackbar
@@ -95,106 +97,121 @@ export default function AddTransactionModal() {
         </Alert>
       </Snackbar>
 
-      <div>
-        {open && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center flex-col gap-3 backdrop-blur-xs transition-all duration-300">
-            <div className="bg-gray-100 rounded-3xl p-2">
-              <DialogTitle
+      {open && (
+
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.2 }}
+          className={`fixed inset-0 z-50 flex items-center  justify-center flex-col gap-3 backdrop-blur-xs transition-all duration-300 ${open ? "block" : "hidden"}`}>
+          <motion.div className="bg-white rounded-3xl p-6 lg:w-[30%] w-full"
+
+            initial={{ opacity: 0, y: 30, scale: 0.5 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.2 }}>
+            <DialogTitle
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                fontWeight: 500,
+                borderRadius: 5,
+              }}
+            >
+              <Wallet size={22} /> Add a New Transaction
+            </DialogTitle>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-5">
+              <TextField
+                label="Title"
+                variant="outlined"
+                value={transactionName}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: 4,
+                  },
+                }}
+                onChange={(e) => setTransactionName(e.target.value)}
+              // className="w-[17rem]"
+              />
+              {/* Amount */}
+              <NumericFormat
+                prefix="₦"
+                customInput={TextField}
+                label="Amount"
+                thousandSeparator
+                allowNegative={false}
+                value={transactionAmount}
+                onValueChange={(e) => setTransactionAmount(e.floatValue)}
+                fullWidth
+                placeholder="Amount"
+                className="p-3 rounded-xl border border-gray-300"
+              />
+
+              {/* Category */}
+              <InputLabel id="cat-label">Expense made for</InputLabel>
+              <Select
+                labelId="cat-label"
+                id="cat-select"
+                value={selectedCat}
+                label="Expense made for"
+                onChange={handleCatChange}
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   gap: 1,
                   fontWeight: 500,
-                  borderRadius: 3,
+                  borderRadius: 5,
                 }}
+
               >
-                <Wallet size={22} /> Add a New Transaction
-              </DialogTitle>
+                {categories.map((category) => (
+                  <MenuItem
+                    className="bg-gray-700 rounded-xl flex gap-2 p-2 w-full"
+                    key={category.id ?? category.title}
+                    value={category.id ?? category.title}
+                  >
+                    <div>{category.icon}</div>
+                    {category.title}
+                  </MenuItem>
+                ))}
+              </Select>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-5">
-                <TextField
-                  label="Title"
-                  variant="outlined"
-                  value={transactionName}
+              {/* Description */}
+
+              <div className="flex justify-between mt-2 rounded-3xl p-2.5 border border-gray-400">
+                <Button
+                  onClick={handleClose}
+                  startIcon={<X size={17} fill="red" color="white" />}
                   sx={{
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: 4,
-                    },
+                    textTransform: "none", color: "white", padding: "13px", background: "red",
+                    borderRadius: 5,
                   }}
-                  onChange={(e) => setTransactionName(e.target.value)}
-                  className="w-[17rem]"
-                />
-                {/* Amount */}
-                <FormControl fullWidth>
-                  <NumericFormat
-                    prefix="₦"
-                    customInput={TextField}
-                    label="Amount"
-                    thousandSeparator
-                    allowNegative={false}
-                    value={transactionAmount}
-                    onValueChange={(e) => setTransactionAmount(e.floatValue)}
-                    fullWidth
-                    className="border-gray-300"
-                  />
-                </FormControl>
-
-                {/* Category */}
-                <FormControl fullWidth>
-                  <InputLabel id="cat-label">Expense made for</InputLabel>
-                  <Select
-                    labelId="cat-label"
-                    id="cat-select"
-                    value={selectedCat}
-                    label="Expense made for"
-                    onChange={handleCatChange}
-                    className=""
-                  >
-                    {categories.map((category) => (
-                      <MenuItem
-                        className="bg-gray-700 rounded-xl flex gap-2 p-2"
-                        key={category.id ?? category.title}
-                        value={category.id ?? category.title}
-                      >
-                        <div>{category.icon}</div>
-                        {category.title}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                {/* Description */}
-
-                <div className="flex justify-between mt-2 rounded-xl p-2">
-                  <Button
-                    onClick={handleClose}
-                    startIcon={<X size={17} />}
-                    sx={{ textTransform: "none", color: "red", padding: 1 }}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    // onClick={handleClose}
-                    endIcon={<Wallet />}
-                    type="submit"
-                    style={{
-                      backgroundColor: "green",
-                      color: "white",
-                      textTransform: "none",
-                      fontWeight: 500,
-                      borderRadius: 10,
-                      padding: "10px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Add Expense
-                  </Button>
-                </div>
-              </form>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+                >
+                  Cancel
+                </Button>
+                <Button
+                  // onClick={handleClose}
+                  endIcon={<Wallet />}
+                  type="submit"
+                  style={{
+                    backgroundColor: "green",
+                    color: "white",
+                    textTransform: "none",
+                    fontWeight: 500,
+                    borderRadius: 10,
+                    padding: "10px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Add Expense
+                </Button>
+              </div>
+            </form>
+          </motion.div>
+        </motion.div>
+      )
+      }
+    </div >
   );
 }

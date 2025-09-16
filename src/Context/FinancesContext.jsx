@@ -22,6 +22,9 @@ export const FinanceProvider = ({ children }) => {
     return storedTransactions ? JSON.parse(storedTransactions) : [];
   });
   const [transactionName, setTransactionName] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   const [transactionAmount, setTransactionAmount] = useState();
   const [transactionDesc, setTransactionDesc] = useState("");
   const [isExpense, setIsExpense] = useState(true);
@@ -87,6 +90,13 @@ export const FinanceProvider = ({ children }) => {
   useEffect(() => {
     calculateExpenses();
   }, [transactions]);
+
+  function searchTransaction({ searchQuery }) {
+
+    const searchResults = transactions.filter((transaction) => transaction.name === searchQuery)
+    setSearchResults(searchResults)
+
+  }
 
   function addTransaction() {
     setTransactions((currentTransactions) => [

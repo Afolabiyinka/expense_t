@@ -23,7 +23,7 @@ const Features = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 px-4 lg:px-10 py-12">
+    <div className="flex flex-col lg:flex-row gap-8 px-4 lg:px-10 py-12 w-full">
       <motion.div
         className="flex flex-col gap-5 lg:w-[50%] justify-center"
         initial="hidden"
@@ -33,7 +33,8 @@ const Features = () => {
         <h1 className="text-center text-2xl md:text-3xl font-semibold mb-2">
           Why Choose Our Expense Tracker?
         </h1>
-        {FEATUREITEMS.map(({ title, icon: Icon }, index) => (
+       <span className="flex flex-col gap-6">
+         {FEATUREITEMS.map(({ title, icon: Icon }, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
@@ -47,6 +48,7 @@ const Features = () => {
             <span className="text-lg font-medium text-gray-800">{title}</span>
           </motion.div>
         ))}
+       </span>
       </motion.div>
 
       <motion.div

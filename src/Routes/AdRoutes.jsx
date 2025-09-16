@@ -7,7 +7,7 @@ import OnBoarding from "../Pages/Website/OnBoarding";
 import AdPages from "../Pages/Website/AdPages";
 const HomeRoute = () => {
   return (
-    <div>
+    
       <Routes>
         <Route element={<NavBar />}>
           <Route index element={<AdPages />} />
@@ -17,7 +17,7 @@ const HomeRoute = () => {
           <Route path="*" element={<NotFound path="/" />} />
         </Route>
       </Routes>
-    </div>
+    
   );
 };
 

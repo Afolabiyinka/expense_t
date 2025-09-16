@@ -18,6 +18,12 @@ export const UserProvider = ({ children }) => {
     navigate("/app/finances");
     console.log(user);
   }
+
+  function deleteUser() {
+    localStorage.removeItem("storedUser")
+    localStorage.removeItem("transactions")
+    localStorage.removeItem("profilePic")
+  }
   const value = { user, setUser, handleUser };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

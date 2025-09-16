@@ -77,7 +77,6 @@ export default function AddTransactionModal() {
         >
           <Plus />
         </motion.button>
-
       </motion.span>
 
       {/* Message  */}
@@ -98,17 +97,20 @@ export default function AddTransactionModal() {
       </Snackbar>
 
       {open && (
-
         <motion.div
           initial={{ y: 100 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.2 }}
-          className={`fixed inset-0 z-50 flex items-center  justify-center flex-col gap-3 backdrop-blur-xs transition-all duration-300 ${open ? "block" : "hidden"}`}>
-          <motion.div className="bg-white rounded-3xl p-6 lg:w-[30%] w-full"
-
+          className={`fixed inset-0 z-50 flex items-center  justify-center flex-col gap-3 backdrop-blur-xs transition-all duration-300 ${
+            open ? "block" : "hidden"
+          }`}
+        >
+          <motion.div
+            className="bg-white rounded-3xl p-6 lg:w-[30%] w-full"
             initial={{ opacity: 0, y: 30, scale: 0.5 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.2 }}>
+            transition={{ duration: 0.2 }}
+          >
             <DialogTitle
               sx={{
                 display: "flex",
@@ -132,7 +134,7 @@ export default function AddTransactionModal() {
                   },
                 }}
                 onChange={(e) => setTransactionName(e.target.value)}
-              // className="w-[17rem]"
+                // className="w-[17rem]"
               />
               {/* Amount */}
               <NumericFormat
@@ -163,7 +165,6 @@ export default function AddTransactionModal() {
                   fontWeight: 500,
                   borderRadius: 5,
                 }}
-
               >
                 {categories.map((category) => (
                   <MenuItem
@@ -184,7 +185,10 @@ export default function AddTransactionModal() {
                   onClick={handleClose}
                   startIcon={<X size={17} fill="red" color="white" />}
                   sx={{
-                    textTransform: "none", color: "white", padding: "13px", background: "red",
+                    textTransform: "none",
+                    color: "white",
+                    padding: "13px",
+                    background: "red",
                     borderRadius: 5,
                   }}
                 >
@@ -210,8 +214,7 @@ export default function AddTransactionModal() {
             </form>
           </motion.div>
         </motion.div>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 }

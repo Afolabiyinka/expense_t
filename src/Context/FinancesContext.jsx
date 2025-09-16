@@ -90,12 +90,19 @@ export const FinanceProvider = ({ children }) => {
   useEffect(() => {
     calculateExpenses();
   }, [transactions]);
+  useEffect(() => {
+    if (searchQuery.trim().length > 0) {
+      searchTransaction(searchQuery);
+    } else {
+      setSearchResults(transactions); // fallback: show all if search bar is empty
+    }
+  }, [searchQuery, transactions]);
 
-  function searchTransaction({ searchQuery }) {
-
-    const searchResults = transactions.filter((transaction) => transaction.name === searchQuery)
-    setSearchResults(searchResults)
-
+  function searchTransaction(searchQuery) {
+    const results = transactions.filter((transaction) =>
+      transaction.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(results);
   }
 
   function addTransaction() {
@@ -138,6 +145,9 @@ export const FinanceProvider = ({ children }) => {
     totalIncome,
     expenseIcon,
     setExpenseIcon,
+    searchQuery,
+    setSearchQuery,
+    searchResults,
   };
 
   return (

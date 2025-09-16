@@ -13,7 +13,6 @@ const ExpenseCard = ({ transaction }) => {
     >
       <div className="w-full  shadow rounded-3xl px-4 py-4 flex items-center justify-between gap-3">
         <div className="flex gap-2 items-center">
-
           <div className="p-1.5  rounded-full bg-gray-400">
             {/* {transaction.i} */}
           </div>
@@ -27,8 +26,9 @@ const ExpenseCard = ({ transaction }) => {
           thousandSeparator
           prefix="₦"
           displayType="text"
-          className={`text-xl  ${transaction?.status ? "text-red-600" : "text-green-500"
-            }`}
+          className={`text-xl  ${
+            transaction?.status ? "text-red-600" : "text-green-500"
+          }`}
         />
       </div>
     </motion.div>

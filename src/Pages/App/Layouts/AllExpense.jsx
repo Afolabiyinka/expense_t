@@ -14,11 +14,9 @@ const AllExpense = () => {
     <div className="flex flex-col w-full h-full border border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll">
       {transactions && transactions.length > 0 ? (
         <div className="w-full flex flex-col justify-center items-center">
-          {/* <h1 className="text-xl  mb-6">Your Expenses</h1> */}
-
           <input
             type="search"
-            className="border p-3 rounded-3xl w-full lg:w-[40%] mb-4"
+            className="border p-3  pl-4 rounded-3xl w-[90%] lg:w-[40%] mb-4 border-gray-500 outline:ring-2 ring-blue-600"
             placeholder="Search.."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

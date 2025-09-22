@@ -27,7 +27,7 @@ const Aside = () => {
 
   const [asideOpen, setAsideOpen] = useState(false);
   const location = useLocation();
-  const { user, setUser, handleUser } = useUser();
+  const { user } = useUser();
   const [isEditingInfo, setEditingInfo] = useState(false);
   // const
 
@@ -79,9 +79,10 @@ const Aside = () => {
         {/* User Info */}
         <div className="w-full">
           <motion.div
-            className="flex items-center justify-start mb-1  border border-gray-400 rounded-3xl w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-gray-300 transition-all duration-700s"
+            className="flex items-center justify-start mb-1  border border-gray-400 rounded-3xl w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-gray-200 transition-all duration-700s"
             onClick={() => setEditingInfo(true)}
-            whileTap={{ scale: 1.5 }}
+            whileTap={{ scaleY: 1.1 }}
+            transition={{ duration: 0.2 }}
           >
             <span className="flex items-center gap-2">
               <ProfilePicUpload />
@@ -91,7 +92,6 @@ const Aside = () => {
 
           {/* Editing user info component */}
           <div>
-
             {isEditingInfo && (
               <EditUserDetails setEditingInfo={setEditingInfo} />
             )}
@@ -103,10 +103,11 @@ const Aside = () => {
             <Link
               key={path}
               to={path}
-              className={`flex items-center gap-3 p-1 transition-all duration-200  ${location.pathname === path
-                ? "shadow-xl rounded-2xl transition-all p-3 bg-gray-700 text-white"
-                : ""
-                }`}
+              className={`flex items-center gap-3 p-1 transition-all duration-200  ${
+                location.pathname === path
+                  ? "shadow-xl rounded-3xl transition-all p-3 bg-gray-700 text-white"
+                  : ""
+              }`}
               onClick={() => setAsideOpen(false)}
             >
               <Icon size={24} />

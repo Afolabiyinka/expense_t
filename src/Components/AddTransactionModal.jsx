@@ -10,13 +10,13 @@ import {
   TextField,
   Snackbar,
   Alert,
-  Menu,
 } from "@mui/material";
 import { Wallet, X, Plus, MenuIcon, Icon } from "lucide-react";
 
 import { useTransactionsHook } from "../Context/FinancesContext";
 import { NumericFormat } from "react-number-format";
 import { motion } from "framer-motion";
+import { useCategory } from "../Context/Categories";
 
 export default function AddTransactionModal() {
   const {
@@ -24,13 +24,11 @@ export default function AddTransactionModal() {
     setTransactionAmount,
     setTransactionName,
     addTransaction,
-    categories,
+
     transactionName,
-    setExpenseIcon,
-    expenseIcon,
   } = useTransactionsHook();
+  const { categories, selectedCat, setSelectedCat } = useCategory();
   const [open, setOpen] = useState(false);
-  const [selectedCat, setSelectedCat] = useState("");
 
   //Snackbar related hooks
   const [snackBarMessage, setSnackBarMessage] = useState("");
@@ -189,7 +187,7 @@ export default function AddTransactionModal() {
                     color: "white",
                     padding: "13px",
                     background: "red",
-                    borderRadius: 5,
+                    borderRadius: "20px",
                   }}
                 >
                   Cancel
@@ -203,7 +201,7 @@ export default function AddTransactionModal() {
                     color: "white",
                     textTransform: "none",
                     fontWeight: 500,
-                    borderRadius: 10,
+                    borderRadius: "20px",
                     padding: "10px",
                     cursor: "pointer",
                   }}

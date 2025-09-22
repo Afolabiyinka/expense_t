@@ -1,15 +1,3 @@
-import {
-  Utensils,
-  Bus,
-  ShoppingCart,
-  Smartphone,
-  Home,
-  Wallet,
-  Shirt,
-  HeartPulse,
-  Film,
-  MoreHorizontal,
-} from "lucide-react";
 import { useContext, createContext, useState, useEffect } from "react";
 
 const FinanceContext = createContext();
@@ -32,46 +20,6 @@ export const FinanceProvider = ({ children }) => {
   const [totalExpenses, setTotalExpenses] = useState(null);
   const [expenseIcon, setExpenseIcon] = useState(null);
 
-  const [categories, setCategories] = useState([
-    {
-      title: "Food & Drinks",
-      icon: <Utensils size={20} />,
-      id: crypto.randomUUID(),
-    },
-    { title: "Transport", icon: <Bus size={20} />, id: crypto.randomUUID() },
-    {
-      title: "Groceries",
-      icon: <ShoppingCart size={20} />,
-      id: crypto.randomUUID(),
-    },
-    {
-      title: "Data & Airtime",
-      icon: <Smartphone size={20} />,
-      id: crypto.randomUUID(),
-    },
-    {
-      title: "Bills (Light/Water)",
-      icon: <Wallet size={20} />,
-      id: crypto.randomUUID(),
-    },
-    { title: "Rent", icon: <Home size={20} />, id: crypto.randomUUID() },
-    { title: "Shopping", icon: <Shirt size={20} />, id: crypto.randomUUID() },
-    {
-      title: "Healthcare",
-      icon: <HeartPulse size={20} />,
-      id: crypto.randomUUID(),
-    },
-    {
-      title: "Entertainment",
-      icon: <Film size={20} />,
-      id: crypto.randomUUID(),
-    },
-    {
-      title: "Miscellaneous",
-      icon: <MoreHorizontal size={20} />,
-      id: crypto.randomUUID(),
-    },
-  ]);
   function calculateExpenses() {
     let income = 0;
     let Expenses = 0;
@@ -91,12 +39,8 @@ export const FinanceProvider = ({ children }) => {
     calculateExpenses();
   }, [transactions]);
   useEffect(() => {
-    if (searchQuery.trim().length > 0) {
-      searchTransaction(searchQuery);
-    } else {
-      setSearchResults(transactions); // fallback: show all if search bar is empty
-    }
-  }, [searchQuery, transactions]);
+    searchTransaction(searchQuery);
+  }, [searchQuery]);
 
   function searchTransaction(searchQuery) {
     const results = transactions.filter((transaction) =>
@@ -115,14 +59,13 @@ export const FinanceProvider = ({ children }) => {
         desc: transactionDesc,
         status: isExpense,
         icon: expenseIcon,
+        // category: selectedCat,
       },
     ]);
     localStorage.setItem("transactions", JSON.stringify(transactions));
     setTransactionName("");
     setTransactionAmount();
     setTransactionDesc("");
-    console.log(transactions);
-    console.log(expenseIcon);
   }
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -131,7 +74,7 @@ export const FinanceProvider = ({ children }) => {
   const value = {
     transactions,
     setTransactions,
-    categories,
+
     transactionAmount,
     setTransactionAmount,
     transactionName,

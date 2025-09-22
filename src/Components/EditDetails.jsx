@@ -9,14 +9,14 @@ const EditUserDetails = ({ setEditingInfo }) => {
 
   return (
     <motion.form
-      className="border border-gray-300 p-5 rounded-3xl  backdrop-blur-2xl fixed flex flex-col justify-start items-start gap-5 h-fit w-full"
+      className="border border-gray-300 p-5 rounded-3xl bg-white fixed flex flex-col justify-start items-start gap-5 h-fit w-full"
       onSubmit={(e) => {
         e.preventDefault();
         setEditingInfo(false);
       }}
-      initial={{ y: -100, scale: 0.9 }}
-      animate={{ y: -100, scale: 1 }}
-      transition={{ duration: 0.1 }}
+      initial={{ y: -100, scaleY: 0.9 }}
+      animate={{ y: -100, scaleY: 1 }}
+      transition={{ duration: 0.01 }}
     >
       <span className="flex gap-2 items-center">
         <ProfilePicUpload />
@@ -28,9 +28,12 @@ const EditUserDetails = ({ setEditingInfo }) => {
         onChange={(e) => setUser(e.target.value)}
         className="p-3  border rounded-3xl w-full focus:outline-none"
       />
-      <span className="flex justify-between  items-center border p-1 rounded-3xl w-full border-gray-300">
-        <button className="bg-red-500 p-3 px-8 rounded-3xl cursor-pointer hover:bg-red-600 hover:shadow text-white">
-          Log Out{" "}
+      <span className="flex justify-between  items-center border p-1 rounded-3xl w-full border-gray-300 bg-white">
+        <button
+          className="bg-red-500 p-3 px-8 rounded-3xl cursor-pointer hover:bg-red-600 hover:shadow text-white"
+          type="button"
+        >
+          Log Out
         </button>
         <Button
           sx={{

@@ -3,8 +3,6 @@ import PricingCard from "../../Components/Pricing";
 import { motion } from "framer-motion";
 
 const Pricing = () => {
-
-  
   const itemVariants = {
     hidden: { opacity: 0, x: 30 },
     visible: {
@@ -15,7 +13,6 @@ const Pricing = () => {
         type: "spring",
         stiffness: 50,
         damping: 10,
-        
       },
     },
   };
@@ -26,7 +23,6 @@ const Pricing = () => {
       whileInView="visible"
       variants={itemVariants}
       onViewportEnter="visible"
-  
     >
       <PricingCard />
     </motion.div>

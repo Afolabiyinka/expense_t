@@ -3,7 +3,7 @@ import CustomBotton from "../../Components/CustomBotton";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center  w-full gap-6 lg:gap-0 px-3 py-[7rem] text-gray-900">
+    <div className="flex flex-col items-center justify-center  w-full gap-6 lg:gap-0 px-3 py-[8rem] text-gray-900">
       {/* Left Text Section */}
       <motion.div className="w-full lg:w-1/2 flex flex-col items-center justify-center gap-6 text-center">
         <motion.h1

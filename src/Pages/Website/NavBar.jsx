@@ -46,7 +46,7 @@ const NavBar = () => {
   useState(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 10);
+      setIsScrolled(scrollPosition > 13);
     };
     window.addEventListener("scroll", handleScroll);
 

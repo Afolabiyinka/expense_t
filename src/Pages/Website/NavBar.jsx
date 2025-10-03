@@ -62,7 +62,7 @@ const NavBar = () => {
         animate={{}}
         className={`${
           isScrolled
-            ? "backdrop-blur-3xl w-full lg:w-fit fixed top-0  shadow transition-all duration-750 ease-in-out"
+            ? "backdrop-blur-3xl w-full lg:w-fit fixed top-2  shadow transition-all duration-750 ease-in-out"
             : "w-full lg:w-fit"
         } lg:rounded-full rounded-3xl mt-5
            shadow  z-50  flex justify-between lg:justify-center lg:gap-56 p-3 text-gray-900 w-fit ${

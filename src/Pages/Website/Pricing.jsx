@@ -1,6 +1,8 @@
 import React from "react";
 import PricingCard from "../../Components/Pricing";
 import { motion } from "framer-motion";
+import { PiggyBank } from "lucide-react";
+import { SendDollars } from "iconoir-react";
 
 const Pricing = () => {
   const itemVariants = {
@@ -16,15 +18,18 @@ const Pricing = () => {
       },
     },
   };
+
   return (
     <motion.div
-      className="h-fit flex flex-col justify-center items-center p-6"
+      className="h-fit flex flex-col md:flex-row gap-10 justify-center items-center p-6 "
       initial="hidden"
       whileInView="visible"
       variants={itemVariants}
       onViewportEnter="visible"
     >
-      <PricingCard />
+      <div>
+        <PricingCard />
+      </div>
     </motion.div>
   );
 };

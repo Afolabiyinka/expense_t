@@ -56,17 +56,16 @@ const NavBar = () => {
   }, []);
 
   return (
-    <motion.div className="flex flex-col items-center  gap-[2rem]">
+    <motion.div className="flex flex-col items-center justify-center relative">
       <motion.div
-        initial={{ width: "100%" }}
-        animate={{ width: "fit" }}
         transition={{ duration: 0.6 }}
+        animate={{}}
         className={`${
           isScrolled
-            ? "bg-gray-100 fixed border border-gray-300 shadow transition-transition duration-750 ease-in-out"
-            : ""
-        } md:rounded-full rounded-3xl mt-1.5
-           shadow  z-50  flex justify-between lg:justify-center lg:gap-56 p-3 text-gray-900 ${
+            ? "backdrop-blur-3xl w-full lg:w-fit fixed top-0  shadow transition-all duration-750 ease-in-out"
+            : "w-full lg:w-fit"
+        } lg:rounded-full rounded-3xl mt-5
+           shadow  z-50  flex justify-between lg:justify-center lg:gap-56 p-3 text-gray-900 w-fit ${
              openNav ? "translate-y-0" : "translate-y-0"
            }`}
       >
@@ -100,7 +99,7 @@ const NavBar = () => {
         </div>
 
         <span
-          className="block lg:hidden ml-1 mt-1.5 transition-all fixed top-1 right-2 ease-in-out duration-700 bg-inherit p-2 rounded-full"
+          className="block lg:hidden ml-1 mt-1.5 transition-all fixed top-1 right-2 ease-in-out duration-1000 bg-inherit p-2 rounded-full"
           onClick={() => setOpenNav(!openNav)}
         >
           {openNav ? (

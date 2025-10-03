@@ -1,12 +1,24 @@
 import { motion } from "framer-motion";
-import { DollarSign, GitGraph, PieChart, BarChart } from "lucide-react";
+import { Banknote, PiggyBank, Users } from "lucide-react";
 import featuresSvg from "../../assets/undraw_personal-goals_f9bb.svg";
 
 const Features = () => {
-  const FEATUREITEMS = [
-    { title: "Smart Budgeting", icon: DollarSign },
-    { title: "Track Your Expenses", icon: PieChart },
-    { title: "Visual Spending Insights", icon: BarChart },
+  const perks = [
+    {
+      name: "Spend your hard earned money",
+      desc: "with peace of mind and think more clearly with no stress",
+      icon: Banknote,
+    },
+    {
+      name: "Save up more money ",
+      desc: "to buy that house, car or whatever your financial goals are.",
+      icon: PiggyBank,
+    },
+    {
+      name: "Save up more money ",
+      desc: "to buy that house, car or whatever your financial goals are.",
+      icon: Users,
+    },
   ];
 
   const itemVariants = {
@@ -23,32 +35,39 @@ const Features = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 px-6 lg:px-10 py-12 w-full">
+    <div className="flex flex-col lg:flex-row gap-8 px-2 lg:px-10 py-12 w-full">
       <motion.div
         className="flex flex-col gap-5 lg:w-[50%] justify-center"
         initial="hidden"
         whileInView="visible"
         onViewportEnter="visible"
+        viewport={{ amount: 0.1 }}
       >
         <h1 className="text-center text-2xl md:text-3xl font-semibold mb-2">
           Why Choose Our Expense Tracker?
         </h1>
-        <span className="flex flex-col gap-6">
-          {FEATUREITEMS.map(({ title, icon: Icon }, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="flex items-center gap-3 px-4 py-5 rounded-2xl shadow-md border border-white bg-white"
-              style={{
-                boxShadow:
-                  "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-              }}
-            >
-              <Icon className="w-6 h-6 text-blue-600" />
-              <span className="text-lg font-medium text-gray-800">{title}</span>
-            </motion.div>
-          ))}
-        </span>
+        <div className="p-1">
+          {/* <h1 className="mb-2 text-3xl">Tired of reckless spending habits?</h1> */}
+          <div className=" flex flex-col gap-7 transition-all">
+            {perks.map(({ icon: Icon, name, desc }) => (
+              <motion.span
+                variants={itemVariants}
+                className="shadow p-3 rounded-full flex gap-3 justify-start items-center"
+              >
+                <span>
+                  <Icon
+                    size={50}
+                    className="rounded-full  bg-purple-700 text-white p-1  stroke-[1px]"
+                  />
+                </span>
+                <span className="p-1 ">
+                  <h1 className="font-semibold">{name}</h1>
+                  <p className="text-gray-600">{desc}</p>
+                </span>
+              </motion.span>
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       <motion.div

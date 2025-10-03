@@ -12,7 +12,7 @@ import {
   Plus,
 } from "lucide-react";
 import { useUser } from "../../Context/UserContext";
-import expenseTLogo from "../../assets/Icons and Logos/Expenset logo 1.png";
+import expenseTLogo from "../../assets/Icons and Logos/Gemini_Generated_Image_iojhbviojhbviojh.png";
 import ProfilePicUpload from "./ProfilePic";
 import EditUserDetails from "../../Components/EditDetails";
 import { motion } from "framer-motion";
@@ -32,10 +32,13 @@ const Aside = () => {
   // const
 
   return (
-    <div className="w-full flex lg:flex-row h-screen relative bg-white">
+    <div className="w-full flex lg:flex-row h-screen p-1 relative bg-white">
       {/* ===== Overlay for Mobile ===== */}
       {asideOpen && (
-        <div onClick={() => setAsideOpen(false)} className="w-fit lg:hidden" />
+        <div
+          onClick={() => setAsideOpen(false)}
+          className="backdrop-blur-lg fixed z-30 w-full h-full block lg:hidden"
+        />
       )}
 
       {/* ===== Mobile Toggle Button ===== */}
@@ -51,9 +54,12 @@ const Aside = () => {
       </button>
 
       {/* ===== Sidebar ===== */}
-      <div
+      <motion.div
+        initial={{ x: -50 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.3, ease: "easeIn" }}
         className={`
-          fixed top-0 left-0 z-40 h-[99%] rounded-3xl m-1
+          fixed top-0 left-0 z-30 h-[99%] rounded-3xl m-1
           ${asideOpen ? "translate-x-0" : "-translate-x-full"}
           lg:relative lg:translate-x-0
           transition-transform duration-300 ease-in-out
@@ -103,9 +109,9 @@ const Aside = () => {
             <Link
               key={path}
               to={path}
-              className={`flex items-center gap-3 p-1 transition-all duration-200  ${
+              className={`flex items-center gap-3 p-1 transition-all duration-700  ${
                 location.pathname === path
-                  ? "shadow-xl rounded-3xl transition-all p-3 bg-gray-700 text-white"
+                  ? "shadow-xl rounded-3xl transition-all duration-700 p-3 bg-gray-700 text-white"
                   : ""
               }`}
               onClick={() => setAsideOpen(false)}
@@ -115,7 +121,7 @@ const Aside = () => {
             </Link>
           ))}
         </nav>
-      </div>
+      </motion.div>
 
       <div className="flex-1 p-1">
         <Outlet />

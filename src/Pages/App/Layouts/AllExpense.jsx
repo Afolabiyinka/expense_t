@@ -1,6 +1,7 @@
 import ExpenseCard from "../../../Components/ExpenseCard";
 import { useTransactionsHook } from "../../../Context/FinancesContext";
 import { Wallet } from "lucide-react";
+import { motion } from "framer-motion";
 
 const AllExpense = () => {
   const { transactions, searchQuery, setSearchQuery, searchResults } =
@@ -11,12 +12,17 @@ const AllExpense = () => {
     searchQuery.trim().length > 0 ? searchResults : transactions;
 
   return (
-    <div className="flex flex-col w-full h-full border border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll">
+    <motion.div
+      initial={{ y: 50 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.3, ease: "easeIn" }}
+      className="flex flex-col w-full h-full border border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll"
+    >
       {transactions && transactions.length > 0 ? (
         <div className="w-full flex flex-col justify-center items-center">
           <input
             type="search"
-            className="border p-3  pl-4 rounded-3xl w-[90%] lg:w-[40%] mb-4 border-gray-500 outline:ring-2 ring-blue-600"
+            className=" outline-0 p-3 border border-blue-600 pl-4 rounded-3xl w-[90%] lg:w-[40%] mb-4 focus:ring-1 ring-blue-600"
             placeholder="Search.."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -39,12 +45,12 @@ const AllExpense = () => {
           <span className="flex flex-col justify-center items-center text-center h-full">
             <Wallet size={70} className="animate-bounce" />
             <p className="text-lg font-mono">
-              Add a new transaction to get started
+              Add a new expense to get started
             </p>
           </span>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

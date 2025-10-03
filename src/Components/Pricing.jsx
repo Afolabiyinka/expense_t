@@ -6,7 +6,6 @@ import CardMedia from "@mui/material/CardMedia";
 import CustomBotton from "./CustomBotton";
 import Box from "@mui/material/Box";
 import paymentSvg from "../assets/undraw_pay-online_806n.svg";
-import { Link } from "react-router-dom";
 
 export default function PricingCard() {
   return (

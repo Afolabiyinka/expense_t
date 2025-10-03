@@ -71,7 +71,7 @@ export default function AddTransactionModal() {
       <motion.span className="ml-2">
         <motion.button
           onClick={handleClickOpen}
-          className="bg-purple-600 text-white rounded-full h-15 absolute bottom-14 z-50 right-10 w-15 flex  justify-center items-center cursor-pointer "
+          className="bg-purple-600 text-white rounded-full h-15 absolute bottom-12 z-50 right-10 w-15 flex  justify-center items-center cursor-pointer "
         >
           <Plus />
         </motion.button>
@@ -137,7 +137,7 @@ export default function AddTransactionModal() {
               {/* Amount */}
               <NumericFormat
                 prefix="₦"
-                customInput={TextField}
+                // customInput={TextField}
                 label="Amount"
                 thousandSeparator
                 allowNegative={false}
@@ -145,7 +145,7 @@ export default function AddTransactionModal() {
                 onValueChange={(e) => setTransactionAmount(e.floatValue)}
                 fullWidth
                 placeholder="Amount"
-                className="p-3 rounded-xl border border-gray-300"
+                className="p-4 rounded-xl border border-gray-300"
               />
 
               {/* Category */}
@@ -185,9 +185,12 @@ export default function AddTransactionModal() {
                   sx={{
                     textTransform: "none",
                     color: "white",
-                    padding: "13px",
+                    // padding: "13px",
+                    paddingBlock: "10px",
+                    paddingInline: "30px",
                     background: "red",
                     borderRadius: "20px",
+                    width: "fit-content",
                   }}
                 >
                   Cancel

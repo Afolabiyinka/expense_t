@@ -1,44 +1,59 @@
-import { IconButton } from "@mui/material";
+import { Button, IconButton, Tooltip } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Trash } from "lucide-react";
 import { useTransactionsHook } from "../../Context/FinancesContext";
+import { useCategory } from "../../Context/Categories";
+import { motion } from "framer-motion";
 
 function Categories() {
   const [isHovered, setIsHovered] = useState(false);
-  const [selectedCat, setSelectedCat] = useState(null);
-  const { categories } = useTransactionsHook();
+  const [selectedCat, setSelectedCat] = useState();
+  const { categories, addCategory, deleteCategory } = useCategory();
 
   return (
-    <div
-      className="flex flex-col justify-center items-center w-full h-full pt-[27rem]
-   md:pt-0"
-    >
-      <h1 className="text-3xl font-mono mb-8 p-4 rounded-full border border-gray-200">
+    <div className="flex flex-col justify-center items-center w-full h-full pt-[32rem] md:pt-0">
+      <h1 className="text-3xl font-mono mb-8 p-4 md:rounded-full rounded-3xl border border-gray-200">
         You can add, delete and create a category here!
       </h1>
-      <div className="border border-gray-200  rounded-3xl  grid grid-cols-1 lg:grid-cols-4 gap-5  w-full p-4">
-        {categories.map((category) => (
-          <span
-            onClick={(e) => {
-              setIsHovered(true);
-              setSelectedCat(e.target.value);
-            }}
-            key={category.id}
-            className="flex gap-8 border rounded-3xl p-2  items-center w-fit justify-between hover:bg-gray-200 cursor-pointer "
-          >
-            <span className="flex items-center justify-center">
-              <span className="p-1 rounded-full h-10 w-10 flex justify-center items-center bg-black text-white mr-2">
-                {category.icon}
+      <div className="border border-gray-200 w-full rounded-3xl p-6 flex flex-col justify-center gap-6 cursor-pointer">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
+          {categories.map((category) => (
+            <motion.span
+              initial={{ scaleX: 0.7 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              key={category.id}
+              className="flex gap-8 border rounded-full p-2  items-center w-full justify-between  cursor-pointer "
+            >
+              <span className="flex items-center justify-center">
+                <span className="p-1 rounded-full h-10 w-10 flex justify-center items-center bg-black text-white mr-2">
+                  {category.icon}
+                </span>
+                <h1>{category.title}</h1>
               </span>
-              <h1>{category.title}</h1>
-            </span>
-            {selectedCat && (
-              <span className="p-3 text-red-600 rounded-full h-10 w-10 flex justify-center items-center">
-                <Trash />
-              </span>
-            )}
-          </span>
-        ))}
+              {isHovered && (
+                <Tooltip title="Delete category" placement="top">
+                  <IconButton
+                    onClick={() => deleteCategory(category.id)}
+                    className="p-3 rounded-full h-10 w-10 flex justify-center items-center hover:bg-gray-400"
+                  >
+                    <Trash color="red" className="stroke-[1px]" />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </motion.span>
+          ))}
+        </div>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ borderRadius: "40px", padding: "10px" }}
+          className=""
+        >
+          Add a new Category
+        </Button>
       </div>
     </div>
   );

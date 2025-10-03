@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 * {
   scroll-behavior: smooth;
   transition: all 0.2s;
@@ -31,8 +30,6 @@
   width: 10px;
 }
 /* Global CSS or your component's CSS file */
-
-
 
 body {
   font-family: "Inter", sans-serif;

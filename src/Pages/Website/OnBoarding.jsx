@@ -17,7 +17,7 @@ const OnBoarding = () => {
     }
   }, []);
   return (
-    <motion.div className="h-[100vh] w-full flex flex-col lg:flex-row gap-6 lg:gap-0 px-3 lg:px-10  ">
+    <motion.div className="h-full  w-full flex flex-col  justify-center items-center lg:flex-row gap-6 lg:gap-0 px-3 lg:px-10  ">
       <motion.div
         className="w-full h-full lg:w-1/2 flex flex-col mt-6 gap-4 lg:gap-6 justify-center items-center text-center"
         initial={{ y: 100 }}
@@ -29,7 +29,7 @@ const OnBoarding = () => {
           className="md:text-xl"
           initial={{ y: -12 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
           No sign-up needed your data is stored safely on your device🔐
         </motion.p>
@@ -47,24 +47,27 @@ const OnBoarding = () => {
               required
               onChange={(e) => setUser(e.target.value)}
               placeholder="Eg Richard"
-              className="w-[16rem] h-[3rem] shadow rounded-lg p-2 font-serif bg-inherit outline-0 text-black"
+              className="w-[16rem] h-[3.5rem] border border-gray-200 focus:ring-2 focus:ring-purple-400 rounded-full p-3 font-serif bg-inherit outline-0 text-black"
             />
           </span>
-          <Button variant="contained" type="submit">
+          <button
+            type="submit"
+            className="bg-purple-700 text-white px-6 cursor-pointer py-3 rounded-full font-bold hover:bg-purple-600 hover:shadow transition duration-300 flex gap-3 items-center justify-center"
+          >
             Continue
-          </Button>
+          </button>
         </form>
       </motion.div>
       <motion.div
-        className="w-full h-fit   p-3 lg:w-1/2 flex items-center justify-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        className="w-full h-full  lg:w-1/2 flex items-center justify-center"
+        initial={{ y: -30 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
       >
         <img
           src={welcomeSvg}
           alt="Welcome aboard animation"
-          className="object-cover md:max-h-[500px] w-full"
+          className="object-cover md:max-h-[600px] w-full"
         />
       </motion.div>
     </motion.div>

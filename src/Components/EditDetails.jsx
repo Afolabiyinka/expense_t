@@ -9,7 +9,7 @@ const EditUserDetails = ({ setEditingInfo }) => {
 
   return (
     <motion.form
-      className="border border-gray-300 p-5 rounded-3xl bg-white fixed flex flex-col justify-start items-start gap-5 h-fit w-full"
+      className="border border-gray-300 p-5 rounded-3xl bg-white fixed flex text-center flex-col justify-start items-start gap-5 h-fit w-full"
       onSubmit={(e) => {
         e.preventDefault();
         setEditingInfo(false);
@@ -18,6 +18,7 @@ const EditUserDetails = ({ setEditingInfo }) => {
       animate={{ y: -100, scaleY: 1 }}
       transition={{ duration: 0.01 }}
     >
+      <h1 className="text-xl ">Edit your details</h1>
       <span className="flex gap-2 items-center">
         <ProfilePicUpload />
         <p>Profile Pic</p>
@@ -26,7 +27,7 @@ const EditUserDetails = ({ setEditingInfo }) => {
         type="text"
         value={user}
         onChange={(e) => setUser(e.target.value)}
-        className="p-3  border rounded-3xl w-full focus:outline-none"
+        className="p-3  border rounded-3xl w-full focus:outline-none focus:bg-blue-50"
       />
       <span className="flex justify-between  items-center border p-1 rounded-3xl w-full border-gray-300 bg-white">
         <button

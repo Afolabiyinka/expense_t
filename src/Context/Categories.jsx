@@ -60,8 +60,8 @@ export const CategoriesProvider = ({ children }) => {
   const [selectedCat, setSelectedCat] = useState();
 
   useEffect(() => {
-    console.log(selectedCat);
-  }, [selectedCat]);
+    // localStorage.setItem("categories", JSON.stringify(categories));
+  }, [categories]);
 
   function addCategory({ title }) {
     setCategories((currentCategories) => [
@@ -74,7 +74,19 @@ export const CategoriesProvider = ({ children }) => {
     ]);
   }
 
-  const value = { addCategory, categories, selectedCat, setSelectedCat };
+  function deleteCategory(categoryId) {
+    setCategories((prev) =>
+      prev.filter((category) => category.id !== categoryId)
+    );
+  }
+
+  const value = {
+    addCategory,
+    categories,
+    selectedCat,
+    setSelectedCat,
+    deleteCategory,
+  };
   return (
     <CategoriesContext.Provider value={value}>
       {children}

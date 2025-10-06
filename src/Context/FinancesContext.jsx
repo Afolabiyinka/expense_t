@@ -1,5 +1,18 @@
 import { useContext, createContext, useState, useEffect } from "react";
-
+import {
+  Utensils,
+  Bus,
+  ShoppingCart,
+  Smartphone,
+  Home,
+  Wallet,
+  Shirt,
+  HeartPulse,
+  Film,
+  MoreHorizontal,
+  GraduationCap,
+} from "lucide-react";
+import { Tools } from "iconoir-react";
 const FinanceContext = createContext();
 
 export const useTransactionsHook = () => useContext(FinanceContext);
@@ -19,6 +32,60 @@ export const FinanceProvider = ({ children }) => {
   const [totalIncome, setTotalIncome] = useState(null);
   const [totalExpenses, setTotalExpenses] = useState(null);
   const [expenseIcon, setExpenseIcon] = useState(null);
+
+  const iconMapping = {
+    Utensils: Utensils,
+    Bus: Bus,
+    ShoppingCart: ShoppingCart,
+    Smartphone: Smartphone,
+    Wallet: Wallet,
+    Home: Home,
+    Shirt: Shirt,
+    HeartPulse: HeartPulse,
+    Film: Film,
+    MoreHorizontal: MoreHorizontal,
+    GraduationCap: GraduationCap,
+    Tools: Tools,
+  };
+  const defaultCategories = [
+    { title: "Food & Drinks", icon: "Utensils", id: crypto.randomUUID() },
+    { title: "Study", icon: "GraduationCap", id: crypto.randomUUID() },
+    { title: "Utilities", icon: "Tools", id: crypto.randomUUID() },
+    { title: "Groceries", icon: "ShoppingCart", id: crypto.randomUUID() },
+    { title: "Data & Airtime", icon: "Smartphone", id: crypto.randomUUID() },
+    { title: "Bills (Light/Water)", icon: "Wallet", id: crypto.randomUUID() },
+    { title: "Rent", icon: "Home", id: crypto.randomUUID() },
+    { title: "Shopping", icon: "Shirt", id: crypto.randomUUID() },
+    { title: "Healthcare", icon: "HeartPulse", id: crypto.randomUUID() },
+    { title: "Entertainment", icon: "Film", id: crypto.randomUUID() },
+    { title: "Miscellaneous", icon: "MoreHorizontal", id: crypto.randomUUID() },
+  ];
+
+  const [categories, setCategories] = useState(() => {
+    const storedCategories = localStorage.getItem("categories");
+    return storedCategories ? JSON.parse(storedCategories) : defaultCategories;
+  });
+  const [selectedCat, setSelectedCat] = useState();
+
+  function addCategory({ title }) {
+    setCategories((currentCategories) => [
+      ...currentCategories,
+      {
+        id: crypto.randomUUID(),
+        title,
+        // icon: emoji,
+      },
+    ]);
+  }
+  function deleteCategory(categoryId) {
+    setCategories((prev) => {
+      const updatedCategories = prev.filter(
+        (category) => category.id !== categoryId
+      );
+      localStorage.setItem("categories", JSON.stringify(updatedCategories));
+      return updatedCategories;
+    });
+  }
 
   function calculateExpenses() {
     let income = 0;
@@ -59,13 +126,19 @@ export const FinanceProvider = ({ children }) => {
         desc: transactionDesc,
         status: isExpense,
         icon: expenseIcon,
-        // category: selectedCat,
+        category: selectedCat,
       },
     ]);
     localStorage.setItem("transactions", JSON.stringify(transactions));
     setTransactionName("");
     setTransactionAmount();
     setTransactionDesc("");
+  }
+  function deleteExpense(transactionId) {
+    setTransactions((prev) =>
+      prev.filter((transaction) => transaction.id !== transactionId)
+    );
+    return;
   }
   useEffect(() => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -74,7 +147,6 @@ export const FinanceProvider = ({ children }) => {
   const value = {
     transactions,
     setTransactions,
-
     transactionAmount,
     setTransactionAmount,
     transactionName,
@@ -82,6 +154,7 @@ export const FinanceProvider = ({ children }) => {
     transactionDesc,
     setTransactionDesc,
     addTransaction,
+    deleteExpense,
     isExpense,
     setIsExpense,
     totalExpenses,
@@ -91,6 +164,12 @@ export const FinanceProvider = ({ children }) => {
     searchQuery,
     setSearchQuery,
     searchResults,
+    addCategory,
+    categories,
+    selectedCat,
+    setSelectedCat,
+    deleteCategory,
+    iconMapping,
   };
 
   return (

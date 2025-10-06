@@ -44,7 +44,7 @@ const Aside = () => {
       {/* ===== Mobile Toggle Button ===== */}
       <button
         onClick={() => setAsideOpen(!asideOpen)}
-        className="block lg:hidden fixed top-2 left-2 z-50 p-3 m-1 rounded-full shadow-lg backdrop-blur-3xl "
+        className="block lg:hidden fixed top-3 left-4 z-50 p-3 m-1 rounded-full shadow-lg backdrop-blur-3xl "
       >
         {asideOpen ? (
           <X size={30} className="stroke-[1.5px]" />
@@ -70,22 +70,19 @@ const Aside = () => {
         `}
       >
         {/* Expense T Logo */}
-        <Link
-          to="/"
-          className="flex gap-2  justify-start p-1 items-center text-xl md:text-2xl  font-semibold tracking-wide"
-        >
-          <div>
+        <div>
+          <a href="/">
             <img
               src={expenseTLogo}
               alt=""
               className="h-12 bg-white  rounded-full w-[13rem]  mr-2"
             />
-          </div>
-        </Link>
+          </a>
+        </div>
         {/* User Info */}
         <div className="w-full">
           <motion.div
-            className="flex items-center justify-start mb-1  border border-gray-400 rounded-3xl w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-gray-200 transition-all duration-700s"
+            className="flex items-center justify-start mb-1  border border-gray-400 rounded-full w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-gray-200 transition-all duration-700s"
             onClick={() => setEditingInfo(true)}
             whileTap={{ scaleY: 1.1 }}
             transition={{ duration: 0.2 }}
@@ -109,9 +106,9 @@ const Aside = () => {
             <Link
               key={path}
               to={path}
-              className={`flex items-center gap-3 p-1 transition-all duration-700  ${
+              className={`flex items-center gap-3 p-1 transition-all duration-1000  ${
                 location.pathname === path
-                  ? "shadow-xl rounded-3xl transition-all duration-700 p-3 bg-gray-700 text-white"
+                  ? "shadow-xl rounded-[1.4rem] transition-all duration-1000 p-3 bg-gray-700 text-white"
                   : ""
               }`}
               onClick={() => setAsideOpen(false)}

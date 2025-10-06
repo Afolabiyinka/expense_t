@@ -1,7 +1,8 @@
 import ExpenseCard from "../../../Components/ExpenseCard";
 import { useTransactionsHook } from "../../../Context/FinancesContext";
-import { Wallet } from "lucide-react";
+import { Wallet, Search } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const AllExpense = () => {
   const { transactions, searchQuery, setSearchQuery, searchResults } =
@@ -11,18 +12,23 @@ const AllExpense = () => {
   const displayList =
     searchQuery.trim().length > 0 ? searchResults : transactions;
 
+  const location = useLocation();
   return (
     <motion.div
       initial={{ y: 50 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeIn" }}
-      className="flex flex-col w-full h-full border border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll"
+      className="flex flex-col w-full h-full border  border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll"
     >
       {transactions && transactions.length > 0 ? (
-        <div className="w-full flex flex-col justify-center items-center">
+        <div
+          className={`w-full flex flex-col justify-center items-center  ${
+            location.pathname === "/app/transactions" ? "pt-[5rem] md:pt-0" : ""
+          }`}
+        >
           <input
             type="search"
-            className=" outline-0 p-3 border border-blue-600 pl-4 rounded-3xl w-[90%] lg:w-[40%] mb-4 focus:ring-1 ring-blue-600"
+            className=" outline-0 p-3 border border-gray-900 focus:border-none pl-4 rounded-3xl w-[90%] lg:w-[40%] mb-4 focus:ring-1 ring-blue-600"
             placeholder="Search.."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

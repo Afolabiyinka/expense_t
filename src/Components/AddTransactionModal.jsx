@@ -10,13 +10,13 @@ import {
   TextField,
   Snackbar,
   Alert,
+  Input,
 } from "@mui/material";
 import { Wallet, X, Plus, MenuIcon, Icon } from "lucide-react";
 
 import { useTransactionsHook } from "../Context/FinancesContext";
 import { NumericFormat } from "react-number-format";
 import { motion } from "framer-motion";
-import { useCategory } from "../Context/Categories";
 
 export default function AddTransactionModal() {
   const {
@@ -26,8 +26,12 @@ export default function AddTransactionModal() {
     addTransaction,
 
     transactionName,
+    categories,
+    selectedCat,
+    setSelectedCat,
+    iconMapping,
   } = useTransactionsHook();
-  const { categories, selectedCat, setSelectedCat } = useCategory();
+
   const [open, setOpen] = useState(false);
 
   //Snackbar related hooks
@@ -36,8 +40,12 @@ export default function AddTransactionModal() {
 
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleCatChange = (e) => setSelectedCat(e.target.value);
-
+  const handleCatChange = (e) => {
+    const selectedCategory = categories.find(
+      (category) => category.id === e.target.value
+    );
+    setSelectedCat(selectedCategory);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!transactionName.trim()) {
@@ -71,7 +79,7 @@ export default function AddTransactionModal() {
       <motion.span className="ml-2">
         <motion.button
           onClick={handleClickOpen}
-          className="bg-purple-600 text-white rounded-full h-15 absolute bottom-12 z-50 right-10 w-15 flex  justify-center items-center cursor-pointer "
+          className="bg-purple-600 text-white rounded-full h-15 absolute bottom-8 z-50 right-10 w-15 flex  justify-center items-center cursor-pointer "
         >
           <Plus />
         </motion.button>
@@ -104,7 +112,7 @@ export default function AddTransactionModal() {
           }`}
         >
           <motion.div
-            className="bg-white rounded-3xl p-6 lg:w-[30%] w-full"
+            className="bg-white rounded-3xl p-1 lg:w-[30%] w-full"
             initial={{ opacity: 0, y: 30, scale: 0.5 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.2 }}
@@ -122,13 +130,16 @@ export default function AddTransactionModal() {
             </DialogTitle>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-5">
-              <TextField
+              <input
+                className="border p-5 rounded-3xl border-gray-400"
                 label="Title"
                 variant="outlined"
+                placeholder="Title"
                 value={transactionName}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: 4,
+                    padding: "1",
                   },
                 }}
                 onChange={(e) => setTransactionName(e.target.value)}
@@ -145,7 +156,7 @@ export default function AddTransactionModal() {
                 onValueChange={(e) => setTransactionAmount(e.floatValue)}
                 fullWidth
                 placeholder="Amount"
-                className="p-4 rounded-xl border border-gray-300"
+                className="p-5 rounded-3xl border border-gray-300"
               />
 
               {/* Category */}
@@ -154,63 +165,45 @@ export default function AddTransactionModal() {
                 labelId="cat-label"
                 id="cat-select"
                 value={selectedCat}
-                label="Expense made for"
+                // label="Expense made for"
                 onChange={handleCatChange}
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   gap: 1,
                   fontWeight: 500,
+                  padding: "5px",
                   borderRadius: 5,
                 }}
               >
-                {categories.map((category) => (
-                  <MenuItem
-                    className="bg-gray-700 rounded-xl flex gap-2 p-2 w-full"
-                    key={category.id ?? category.title}
-                    value={category.id ?? category.title}
-                  >
-                    <div>{category.icon}</div>
-                    {category.title}
-                  </MenuItem>
-                ))}
+                {categories.map((category) => {
+                  const Icon = iconMapping[category.icon];
+
+                  return (
+                    <MenuItem
+                      className="bg-gray-700 rounded-xl flex gap-2 p-2 w-full"
+                      key={category.id}
+                      value={category.id}
+                    >
+                      <Icon />
+                      {category.title}
+                    </MenuItem>
+                  );
+                })}
               </Select>
 
               {/* Description */}
 
-              <div className="flex justify-between mt-2 rounded-3xl p-2.5 border border-gray-400">
-                <Button
+              <div className="flex justify-between mt-2 rounded-3xl p-2.5  gap-3 border-gray-400">
+                <button
+                  className="bg-red-600 text-white p-3 px-8 rounded-xl cursor-pointer"
                   onClick={handleClose}
-                  startIcon={<X size={17} fill="red" color="white" />}
-                  sx={{
-                    textTransform: "none",
-                    color: "white",
-                    // padding: "13px",
-                    paddingBlock: "10px",
-                    paddingInline: "30px",
-                    background: "red",
-                    borderRadius: "20px",
-                    width: "fit-content",
-                  }}
                 >
-                  Cancel
-                </Button>
-                <Button
-                  // onClick={handleClose}
-                  endIcon={<Wallet />}
-                  type="submit"
-                  style={{
-                    backgroundColor: "green",
-                    color: "white",
-                    textTransform: "none",
-                    fontWeight: 500,
-                    borderRadius: "20px",
-                    padding: "10px",
-                    cursor: "pointer",
-                  }}
-                >
+                  Close
+                </button>
+                <button className="bg-green-700 text-white p-3 px-8 rounded-xl cursor-pointer">
                   Add Expense
-                </Button>
+                </button>
               </div>
             </form>
           </motion.div>

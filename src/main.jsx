@@ -4,18 +4,15 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { FinanceProvider } from "./Context/FinancesContext.jsx";
-import { CategoriesProvider } from "./Context/Categories.jsx";
 import { UserProvider } from "./Context/UserContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <FinanceProvider>
-        <CategoriesProvider>
-          <UserProvider>
-            <App />
-          </UserProvider>
-        </CategoriesProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
       </FinanceProvider>
     </BrowserRouter>
   </StrictMode>

@@ -32,7 +32,7 @@ const Aside = () => {
   // const
 
   return (
-    <div className="w-full flex lg:flex-row h-screen p-1 relative bg-white">
+    <>
       {/* ===== Overlay for Mobile ===== */}
       {asideOpen && (
         <div
@@ -40,7 +40,6 @@ const Aside = () => {
           className="backdrop-blur-lg fixed z-30 w-full h-full block lg:hidden"
         />
       )}
-
       {/* ===== Mobile Toggle Button ===== */}
       <button
         onClick={() => setAsideOpen(!asideOpen)}
@@ -59,7 +58,7 @@ const Aside = () => {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.3, ease: "easeIn" }}
         className={`
-          fixed top-0 left-0 z-30 h-[99%] rounded-3xl m-1
+          fixed top-0 left-0 z-30 h-[99%] bg-red-700 w-[17rem] rounded-3xl m-1
           ${asideOpen ? "translate-x-0" : "-translate-x-full"}
           lg:relative lg:translate-x-0
           transition-transform duration-300 ease-in-out
@@ -79,6 +78,7 @@ const Aside = () => {
             />
           </a>
         </div>
+
         {/* User Info */}
         <div className="w-full">
           <motion.div
@@ -100,6 +100,7 @@ const Aside = () => {
             )}
           </div>
         </div>
+
         {/* Nav Links */}
         <nav className="flex flex-col gap-7 w-full  border border-gray-400 rounded-3xl p-2 shadow-sm">
           {ASIDEITEMS.map(({ name, path, icon: Icon }) => (
@@ -108,22 +109,23 @@ const Aside = () => {
               to={path}
               className={`flex items-center gap-3 p-1 transition-all duration-1000  ${
                 location.pathname === path
-                  ? "shadow-xl rounded-[1.4rem] transition-all duration-1000 p-3 bg-gray-700 text-white"
+                  ? "shadow-xl rounded-[1.4rem] transition-all duration-1000 p-3 bg-gray-700 text-white stroke-[2px]"
                   : ""
               }`}
               onClick={() => setAsideOpen(false)}
             >
-              <Icon size={24} />
+              <Icon
+                size={24}
+                className={`${
+                  location.pathname === path ? "stroke-[2px]" : "stroke-[1px]"
+                }`}
+              />
               <p>{name}</p>
             </Link>
           ))}
         </nav>
       </motion.div>
-
-      <div className="flex-1 p-1">
-        <Outlet />
-      </div>
-    </div>
+    </>
   );
 };
 

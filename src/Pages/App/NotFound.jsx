@@ -1,15 +1,14 @@
 import React from "react";
 import { Typography } from "@material-tailwind/react";
-import { Button } from "@mui/material";
-import { ArrowLeft, Flag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import CustomBotton from "../../Components/CustomBotton";
+import { Flag } from "lucide-react";
 function NotFound({ path = "/" }) {
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center px-6 text-center">
+    <div className="h-screen md:w-[80%] w-full flex flex-col items-center justify-center px-6 text-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

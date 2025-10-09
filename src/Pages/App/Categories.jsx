@@ -10,7 +10,7 @@ function Categories() {
     useTransactionsHook();
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full pt-[45rem] md:pt-0">
+    <div className="flex flex-col justify-center items-center md:w-[80%] w-full h-full pt-[45rem] md:pt-0">
       <h1 className="text-3xl font-mono mb-8 p-4 md:rounded-full rounded-3xl border border-gray-200">
         You can add, delete and create a category here!
       </h1>
@@ -26,23 +26,22 @@ function Categories() {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 key={id}
-                className="flex gap-8 border rounded-full p-2  items-center w-full justify-between  cursor-pointer "
+                className="flex gap-8 border rounded-full p-4  items-center w-full justify-between  cursor-pointer "
               >
                 <span className="flex items-center justify-center gap-2">
                   <Icon className="p-3 rounded-full h-13 w-13 flex  items-center bg-black text-white stroke-[1px]" />
 
                   <h1>{title}</h1>
                 </span>
-                {isHovered && (
-                  <Tooltip title="Delete category" placement="top">
-                    <IconButton
-                      onClick={() => deleteCategory(id)}
-                      className="p-3 rounded-full h-10 w-10 flex justify-center items-center hover:bg-gray-400"
-                    >
-                      <Trash color="red" className="stroke-[1px]" />
-                    </IconButton>
-                  </Tooltip>
-                )}
+
+                <Tooltip title="Delete category" placement="top">
+                  <span
+                    onClick={() => deleteCategory(id)}
+                    className="p-2 rounded-full h-10 w-10 flex justify-center items-center bg-gray-50 hover:bg-gray-300"
+                  >
+                    <Trash color="red" className="stroke-[1px]" />
+                  </span>
+                </Tooltip>
               </motion.span>
             );
           })}

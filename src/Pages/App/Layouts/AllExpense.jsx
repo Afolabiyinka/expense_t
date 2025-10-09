@@ -18,7 +18,7 @@ const AllExpense = () => {
       initial={{ y: 50 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: "easeIn" }}
-      className="flex flex-col w-full h-full border  border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll"
+      className="flex flex-col md:w-full w-full  h-full border  border-gray-400 gap-3 rounded-3xl p-3 overflow-y-scroll"
     >
       {transactions && transactions.length > 0 ? (
         <div

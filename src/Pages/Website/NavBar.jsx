@@ -119,7 +119,6 @@ const NavBar = () => {
           )}
         </span>
       </motion.div>
-      <Outlet />
     </motion.div>
   );
 };

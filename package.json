@@ -16,6 +16,7 @@
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
     "@tailwindcss/vite": "^4.1.5",
+    "chart.js": "^4.5.0",
     "emoji-picker-react": "^4.12.2",
     "framer-motion": "^12.15.0",
     "iconoir-react": "^7.11.0",

@@ -1,11 +1,9 @@
 import welcomeSvg from "../../assets/undraw_welcome-aboard_y4e9.svg";
 import { useEffect } from "react";
-import { Button } from "@mui/material";
 import { motion } from "framer-motion";
 import { useUser } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 import ProfilePicUpload from "../App/ProfilePic";
-import CustomBotton from "../../Components/CustomBotton";
 
 const OnBoarding = () => {
   const navigate = useNavigate();

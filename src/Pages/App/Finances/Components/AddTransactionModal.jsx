@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import {
-  Button,
-  Dialog,
   DialogTitle,
-  FormControl,
   InputLabel,
   Select,
   MenuItem,
-  TextField,
   Snackbar,
   Alert,
   Input,
 } from "@mui/material";
 import { Wallet, X, Plus, MenuIcon, Icon } from "lucide-react";
 
-import { useTransactionsHook } from "../Context/FinancesContext";
+import { useTransactionsHook } from "../Hooks/FinancesContext";
 import { NumericFormat } from "react-number-format";
 import { motion } from "framer-motion";
 
@@ -64,12 +60,10 @@ export default function AddTransactionModal() {
       return;
     }
 
-    // Success case
     addTransaction();
     setSnackBarMessage("Transaction added successfully 🎉");
     setSnackBarOpen(true);
 
-    // reset
     setSelectedCat("");
     setOpen(false);
   };
@@ -104,17 +98,16 @@ export default function AddTransactionModal() {
 
       {open && (
         <motion.div
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.2 }}
+          // initial={{ y: 100 }}
+          // animate={{ y: 0 }}
           className={`fixed inset-0 z-50 flex items-center  justify-center flex-col gap-3 backdrop-blur-xs transition-all duration-300 ${
             open ? "block" : "hidden"
           }`}
         >
           <motion.div
             className="bg-white rounded-3xl p-1 lg:w-[30%] w-full"
-            initial={{ opacity: 0, y: 30, scale: 0.5 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 30, scaleY: 0.8 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
             transition={{ duration: 0.2 }}
           >
             <DialogTitle

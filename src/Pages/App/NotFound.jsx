@@ -8,7 +8,7 @@ function NotFound({ path = "/" }) {
   const navigate = useNavigate();
 
   return (
-    <div className="h-screen md:w-[80%] w-full flex flex-col items-center justify-center px-6 text-center">
+    <div className="h-screen  w-full flex flex-col items-center justify-center px-6 text-center">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

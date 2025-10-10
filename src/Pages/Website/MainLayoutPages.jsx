@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./Home";
 import Features from "./Features";
 import Pricing from "./Pricing";
-const AdPages = () => {
+const MainLayoutPages = () => {
   return (
     <div className="">
       <Home />
@@ -12,4 +12,4 @@ const AdPages = () => {
   );
 };
 
-export default AdPages;
+export default MainLayoutPages;

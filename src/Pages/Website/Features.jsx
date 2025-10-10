@@ -47,7 +47,6 @@ const Features = () => {
           Why Choose Our Expense Tracker?
         </h1>
         <div className="p-1">
-          {/* <h1 className="mb-2 text-3xl">Tired of reckless spending habits?</h1> */}
           <div className=" flex flex-col gap-7 transition-all">
             {perks.map(({ icon: Icon, name, desc }) => (
               <motion.span
@@ -60,7 +59,7 @@ const Features = () => {
                     className="rounded-full  bg-purple-700 text-white p-1  stroke-[1px]"
                   />
                 </span>
-                <span className="p-1 ">
+                <span className="p-1">
                   <h1 className="font-semibold">{name}</h1>
                   <p className="text-gray-600">{desc}</p>
                 </span>

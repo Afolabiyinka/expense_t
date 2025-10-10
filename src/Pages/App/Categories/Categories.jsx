@@ -1,7 +1,7 @@
 import { Button, IconButton, Tooltip } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Trash } from "lucide-react";
-import { useTransactionsHook } from "../../Context/FinancesContext";
+import { useTransactionsHook } from "../Finances/Hooks/FinancesContext";
 import { motion } from "framer-motion";
 
 function Categories() {
@@ -10,7 +10,7 @@ function Categories() {
     useTransactionsHook();
 
   return (
-    <div className="flex flex-col justify-center items-center md:w-[80%] w-full h-full pt-[45rem] md:pt-0">
+    <div className="flex flex-col justify-center items-center  w-full h-full pt-[45rem] md:pt-0 ">
       <h1 className="text-3xl font-mono mb-8 p-4 md:rounded-full rounded-3xl border border-gray-200">
         You can add, delete and create a category here!
       </h1>

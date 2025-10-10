@@ -1,7 +1,7 @@
-import AddTransactionModal from "../../../Components/AddTransactionModal";
-import MoneyCard from "../../../Components/MoneyCard";
-import { useUser } from "../../../Context/UserContext";
-import { useTransactionsHook } from "../../../Context/FinancesContext";
+import AddTransactionModal from "../Finances/Components/AddTransactionModal";
+import MoneyCard from "../Finances/Components/MoneyCard";
+import { useUser } from "../user/hooks/UserContext";
+import { useTransactionsHook } from "../Finances/Hooks/FinancesContext";
 import { motion } from "framer-motion";
 
 const ExpenseOverview = () => {

@@ -3,9 +3,11 @@ import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
   return (
-    <div className="flex h-screen p-1 ">
+    <div className="flex h-screen justify-start items-start p-1 ">
       <Aside />
-      <Outlet />
+      <div className="w-[83%] h-full p-1">
+        <Outlet />
+      </div>
     </div>
   );
 };

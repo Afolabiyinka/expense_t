@@ -73,7 +73,6 @@ export const FinanceProvider = ({ children }) => {
       {
         id: crypto.randomUUID(),
         title,
-        // icon: emoji,
       },
     ]);
   }

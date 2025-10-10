@@ -1,6 +1,6 @@
-import ExpenseCard from "../../../Components/ExpenseCard";
-import { useTransactionsHook } from "../../../Context/FinancesContext";
-import { Wallet, Search } from "lucide-react";
+import ExpenseCard from "../Finances/Components/ExpenseCard";
+import { useTransactionsHook } from "../Finances/Hooks/FinancesContext";
+import { Wallet } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 

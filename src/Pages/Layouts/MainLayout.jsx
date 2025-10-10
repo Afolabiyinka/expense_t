@@ -5,7 +5,7 @@ import Footer from "../Website/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="flex justify-center items-center flex-col">
       <NavBar />
       <Outlet />
       <Footer />

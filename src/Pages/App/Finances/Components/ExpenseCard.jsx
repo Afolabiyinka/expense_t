@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { NumericFormat } from "react-number-format";
 import { useState } from "react";
-import { useTransactionsHook } from "../Context/FinancesContext";
+import { useTransactionsHook } from "../Hooks/FinancesContext";
 
 const ExpenseCard = ({ transaction }) => {
   const [isHovered, setIsHovered] = useState(false);

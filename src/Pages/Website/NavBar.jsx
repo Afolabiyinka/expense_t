@@ -34,7 +34,6 @@ function NavItems({ onClick }) {
             </Link>
           </li>
         ))}
-        {/* <ModeToggle /> */}
       </ul>
     </nav>
   );

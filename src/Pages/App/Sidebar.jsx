@@ -11,7 +11,7 @@ import {
   Check,
   Plus,
 } from "lucide-react";
-import { useUser } from "../../Context/UserContext";
+import { useUser } from "./user/hooks/UserContext";
 import expenseTLogo from "../../assets/Icons and Logos/Gemini_Generated_Image_iojhbviojhbviojh.png";
 import ProfilePicUpload from "./ProfilePic";
 import EditUserDetails from "../../Components/EditDetails";

@@ -8,8 +8,8 @@ import { UserProvider } from "../Pages/App/user/hooks/UserContext";
 import AppLayout from "../Pages/Layouts/AppLayout";
 import { FinanceProvider } from "../Pages/App/Finances/Hooks/FinancesContext";
 import Finances from "../Pages/App/Finances/Finances";
-import AllExpense from "../Pages/App/Layouts/AllExpense";
-import Categories from "../Pages/App/Categories/Categories";
+import AllExpense from "../Pages/App/layouts/AllExpense";
+import Categories from "../Pages/App/categories/Categories";
 import MainLayoutPages from "../Pages/Website/MainLayoutPages";
 import Graphs from "../Pages/App/Graphs";
 

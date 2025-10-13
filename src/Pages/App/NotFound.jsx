@@ -2,7 +2,7 @@ import React from "react";
 import { Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import CustomBotton from "../../Components/CustomBotton";
+import CustomBotton from "../Website/Components/CustomBotton";
 import { Flag } from "lucide-react";
 function NotFound({ path = "/" }) {
   const navigate = useNavigate();

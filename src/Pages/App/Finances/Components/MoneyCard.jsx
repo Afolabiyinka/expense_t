@@ -1,5 +1,5 @@
 import CountUp from "react-countup";
-import { ArrowUp, ArrowDown, DollarSign } from "lucide-react";
+import { DollarSign } from "lucide-react";
 import { IconButton } from "@mui/material";
 
 const MoneyCard = ({ amount, income }) => {

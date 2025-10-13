@@ -1,9 +1,6 @@
 import React from "react";
-import PricingCard from "../../Components/Pricing";
+import PricingCard from "./Components/Pricing";
 import { motion } from "framer-motion";
-import { PiggyBank } from "lucide-react";
-import { SendDollars } from "iconoir-react";
-
 const Pricing = () => {
   const itemVariants = {
     hidden: { opacity: 0, x: 30 },

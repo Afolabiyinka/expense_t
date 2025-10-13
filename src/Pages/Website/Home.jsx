@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import CustomBotton from "../../Components/CustomBotton";
+import CustomBotton from "./Components/CustomBotton";
 
 const Home = () => {
   return (

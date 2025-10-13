@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import CustomBotton from "./CustomBotton";
 import Box from "@mui/material/Box";
-import paymentSvg from "../assets/undraw_pay-online_806n.svg";
+import paymentSvg from "../../../assets/undraw_pay-online_806n.svg";
 
 export default function PricingCard() {
   return (

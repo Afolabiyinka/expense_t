@@ -1,20 +1,10 @@
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { useState } from "react";
-import {
-  X,
-  Menu,
-  Home,
-  DollarSign,
-  BarChart,
-  Tags,
-  Pen,
-  Check,
-  Plus,
-} from "lucide-react";
+import { X, Menu, Home, DollarSign, BarChart, Tags } from "lucide-react";
 import { useUser } from "./user/hooks/UserContext";
 import expenseTLogo from "../../assets/Icons and Logos/Gemini_Generated_Image_iojhbviojhbviojh.png";
-import ProfilePicUpload from "./ProfilePic";
-import EditUserDetails from "../../Components/EditDetails";
+import ProfilePicUpload from "./user/components/ProfilePic";
+import EditUserDetails from "../App/user/components/EditDetails";
 import { motion } from "framer-motion";
 
 const Aside = () => {

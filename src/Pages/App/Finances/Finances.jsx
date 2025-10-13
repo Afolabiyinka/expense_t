@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import ExpenseOverview from "../Layouts/ExpenseOverview";
-import AllExpense from "../Layouts/AllExpense";
+import ExpenseOverview from "../layouts/ExpenseOverview";
+import AllExpense from "../layouts/AllExpense";
 import { useNavigate } from "react-router-dom";
 
 const Finances = () => {

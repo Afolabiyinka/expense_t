@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Button, IconButton, Menu, Tooltip } from "@mui/material";
-import ProfilePicUpload from "../Pages/App/ProfilePic";
-import { useUser } from "../Pages/App/user/hooks/UserContext";
+import { Button } from "@mui/material";
+import ProfilePicUpload from "../components/ProfilePic";
+import { useUser } from "../hooks/UserContext";
 import { Check } from "lucide-react";
 
 const EditUserDetails = ({ setEditingInfo }) => {

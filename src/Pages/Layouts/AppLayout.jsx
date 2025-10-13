@@ -5,7 +5,7 @@ const AppLayout = () => {
   return (
     <div className="flex h-screen justify-start items-start p-1 ">
       <Aside />
-      <div className="w-[83%] h-full p-1">
+      <div className="md:w-[83%] w-full h-full p-1">
         <Outlet />
       </div>
     </div>

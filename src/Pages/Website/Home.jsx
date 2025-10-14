@@ -12,7 +12,7 @@ const Home = () => {
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Take Charge of Every Naira You Spend
+          Take Charge of Every Naira You Spend.
         </motion.h1>
         <motion.p
           className="md:text-2xl text-gray-600 p-2"

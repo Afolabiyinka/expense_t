@@ -2,7 +2,12 @@ import CountUp from "react-countup";
 import { DollarSign } from "lucide-react";
 import { IconButton } from "@mui/material";
 
-const MoneyCard = ({ amount, income }) => {
+interface MoneyCardProps {
+  amount: number;
+  income: number;
+}
+
+const MoneyCard = ({ amount, income }: MoneyCardProps) => {
   return (
     <div>
       <p className="ml-5">{income ? "Income" : "Spent"}</p>
@@ -19,7 +24,6 @@ const MoneyCard = ({ amount, income }) => {
             className="text-[1.7rem] tracking-widest"
           />
         </span>
-        {/* <p className="fixed bottom-9 text-sm font-light right-3">NGN</p> */}
       </div>
     </div>
   );

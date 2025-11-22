@@ -1,9 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap");
+
 @import "tailwindcss";
 
-* {
-  scroll-behavior: smooth;
-  transition: all 0.2s;
-}
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -31,6 +29,30 @@
 }
 /* Global CSS or your component's CSS file */
 
-body {
-  font-family: "Inter", sans-serif;
+/* Fonts */
+
+@theme inline {
+  --color-m-accent: var(--m-accent);
+  --color-m-dark-accent: var(--m-dark-accent);
+  --color-m-gray: var(--m-gray);
+  --color-lightpurple: var(--secondary);
+  --color-darkgraypurple: var(--tertiary);
+  --color-lightgraypurple: var(--quaternary);
+  --color-mainpurple: var(--quinary);
+  --font-main: var(--main-font);
+  --font-secondary: var(--secondary-font);
+}
+
+:root {
+  --m-accent: #9a5cff;
+  --m-dark-accent: #0d041b;
+  --secondary: #a100a1;
+  --tertiary: #540054;
+  --quaternary: #850085;
+  --quinary: #6d006d;
+  --m-gray: #464545;
+
+  /* font */
+  --secondary-font: "Teachers";
+  --main-font: "Gabarito";
 }

@@ -6,7 +6,7 @@ const MoneyCard = ({ amount, income }) => {
   return (
     <div>
       <p className="ml-5">{income ? "Income" : "Spent"}</p>
-      <div className="relative border border-gray-200 shadow text-white rounded-full w-[15rem] md:p-3.5  p-2 flex bg-black/90">
+      <div className="relative border border-m-gray shadow text-white rounded-full w-[15rem] md:p-3.5  p-2 flex bg-m-dark-accent">
         <IconButton color={income ? "success" : "error"} size="large">
           {income ? <p>+</p> : <p>-</p>}
         </IconButton>

@@ -1,0 +1,47 @@
+import React from "react";
+import { Typography } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import CustomBotton from "../Website/Components/CustomBotton";
+import { Flag } from "lucide-react";
+import CustomBtn from "../Website/Components/CustomBtn";
+
+interface NotFoundProps {
+  path: string;
+  // NotFound: React.FC;
+}
+function NotFound() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="h-screen  w-full flex flex-col items-center justify-center px-6 text-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="max-w-md"
+      >
+        <Flag className="w-20 h-20 mx-auto text-m-gray" />
+        <Typography
+          variant="h1"
+          className="mt-6 text-3xl md:text-4xl font-bold leading-tight text-m-gray"
+        >
+          Oops! Page not found.
+        </Typography>
+        <Typography className="mt-4 mb-8 text-gray-600">
+          Looks like you hit a broken route. Let’s get you back on track.
+        </Typography>
+        <button>
+          <CustomBtn
+            linkpath=""
+            text={`Go Home`}
+            isSolid
+            endIcon="ArrowRight"
+          />
+        </button>
+      </motion.div>
+    </div>
+  );
+}
+
+export default NotFound;

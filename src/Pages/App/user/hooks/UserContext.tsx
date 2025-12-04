@@ -32,7 +32,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     e.preventDefault();
     localStorage.setItem("storedUser", JSON.stringify(user));
     navigate("/app/finances");
-    console.log(user);
   };
 
   const deleteUser = () => {

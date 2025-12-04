@@ -19,18 +19,16 @@ const Aside: React.FC = () => {
   const location = useLocation();
   const { user } = useUser();
   const [isEditingInfo, setEditingInfo] = useState<boolean>(false);
-  // const
 
   return (
     <>
-      {/* ===== Overlay for Mobile ===== */}
       {asideOpen && (
         <div
           onClick={() => setAsideOpen(false)}
           className="backdrop-blur-lg fixed z-30 w-full h-full block lg:hidden"
         />
       )}
-      {/* ===== Mobile Toggle Button */}
+      {/* Mobile Toggle Button */}
       <button
         onClick={() => setAsideOpen(!asideOpen)}
         className="block lg:hidden fixed top-3 left-4 z-50 p-3 m-1 rounded-full shadow-lg backdrop-blur-3xl "
@@ -58,7 +56,6 @@ const Aside: React.FC = () => {
           
         `}
       >
-        {/* Expense T Logo */}
         <div>
           <a href="/">
             <img
@@ -69,10 +66,9 @@ const Aside: React.FC = () => {
           </a>
         </div>
 
-        {/* User Info */}
         <div className="w-full">
           <motion.div
-            className="flex items-center justify-start mb-1  border border-m-accent rounded-full w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-m-dark-accent hover:text-white transition-all duration-300"
+            className="flex items-center justify-start mb-1  border border-m-accent rounded-full w-full py-2 p-3 shadow-sm cursor-pointer hover:bg-m-gray hover:border-m-gray hover:text-white transition-all duration-300"
             onClick={() => setEditingInfo(true)}
             whileTap={{ scaleY: 1.1 }}
             transition={{ duration: 0.6 }}

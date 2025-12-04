@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tooltip } from "@mui/material";
+import { Plus } from "lucide-react";
 
 function ProfilePicUpload() {
   const [profilePic, setProfilePic] = useState(null);
@@ -40,9 +41,9 @@ function ProfilePicUpload() {
           ) : (
             <label
               htmlFor="profile-upload"
-              className="w-14 h-14 rounded-full flex items-center justify-center border border-custom-border  cursor-pointer font-bold"
+              className="w-14 h-14 rounded-full  flex items-center justify-center border border-custom-border  cursor-pointer font-bold"
             >
-              +
+              <Plus />
             </label>
           )}
         </label>

@@ -8,7 +8,6 @@ import React, {
 } from "react";
 
 import * as LucideIcon from "lucide-react";
-
 interface FinanceProviderProps {
   children: React.ReactNode;
 }
@@ -35,26 +34,19 @@ type Categories = categoriesProps[];
 interface FinanceContextType {
   transactions: Transactions;
   setTransactions: Dispatch<SetStateAction<Transactions>>;
-
   categories: Categories;
   setCategories: Dispatch<SetStateAction<Categories>>;
-
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
-
   totalIncome: number;
   totalExpenses: number;
-
   addTransaction: () => void;
   deleteExpense: (transactionId: number) => void;
   calculateExpenses: () => void;
-
   addCategory?: ({ title }: { title: string }) => void;
   deleteCategory: (categoryId: string) => void;
-
   searchTransaction: (searchQuery: string) => void;
   searchResults: Transactions;
-
   transactionName: string;
   setTransactionName: Dispatch<SetStateAction<string>>;
   transactionAmount: string | undefined;
@@ -63,9 +55,6 @@ interface FinanceContextType {
   setTransactionDesc: Dispatch<SetStateAction<string>>;
   isExpense: boolean;
   setIsExpense: Dispatch<SetStateAction<boolean>>;
-  expenseIcon: React.ReactNode | null;
-  setExpenseIcon?: Dispatch<SetStateAction<React.ReactNode | null>>;
-
   selectedCat: string | undefined;
   setSelectedCat: Dispatch<SetStateAction<string | undefined>>;
 }
@@ -96,9 +85,7 @@ export const FinanceProvider = ({ children }: FinanceProviderProps) => {
   const [isExpense, setIsExpense] = useState<boolean>(true);
   const [totalIncome, setTotalIncome] = useState<number>(0);
   const [totalExpenses, setTotalExpenses] = useState<number>(0);
-  const [expenseIcon, setExpenseIcon] = useState<
-    keyof typeof LucideIcon | null
-  >(null);
+
   const [selectedCat, setSelectedCat] = useState<any>();
 
   const defaultCategories: Categories = [
@@ -136,7 +123,6 @@ export const FinanceProvider = ({ children }: FinanceProviderProps) => {
   // Add a new transaction
   function addTransaction() {
     const categoryObj = categories.find((cat) => cat.id === selectedCat);
-
     const newTransaction: transactionsProps = {
       id: Date.now(),
       name: transactionName,
@@ -228,8 +214,6 @@ export const FinanceProvider = ({ children }: FinanceProviderProps) => {
     setTransactionDesc,
     isExpense,
     setIsExpense,
-    expenseIcon,
-    // setExpenseIcon,
     selectedCat,
     setSelectedCat,
   };

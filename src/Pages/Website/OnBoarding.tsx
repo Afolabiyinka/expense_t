@@ -2,19 +2,16 @@ import welcomeSvg from "../../assets/Svg/undraw_welcome-aboard_y4e9.svg";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useUser } from "../App/user/hooks/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import ProfilePicUpload from "../App/user/components/ProfilePic";
 import CustomBtn from "./Components/CustomBtn";
 
 const OnBoarding: React.FC = () => {
-  const navigate = useNavigate();
   const { user, setUser, handleUser } = useUser();
-  useEffect(() => {
-    const storedUser = localStorage.getItem("storedUser");
-    if (storedUser) {
-      navigate("/app/finances");
-    }
-  }, []);
+
+  if (user) {
+    return <Navigate to={"/app/finances"} replace />;
+  }
   return (
     <motion.div className="h-full  w-full flex flex-col  justify-center items-center lg:flex-row gap-6 lg:gap-0 px-3 lg:px-10  ">
       <motion.div

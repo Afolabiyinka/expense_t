@@ -57,7 +57,7 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [window.location]);
 
   return (
     <motion.div className="flex flex-col items-center justify-center relative">
